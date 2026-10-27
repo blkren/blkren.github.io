@@ -5,48 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compliance Renewal Value Model</title>
 <meta name="description" content="A case study in value assessment: a risk-based ROI and three-year cost model for renewing compliance support, built on a fictional dataset.">
-<style>
-:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--a:#1f5f8b;--b:#9aa5b1;--c:#b5562f;}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--a:#7fb3d9;--b:#6b7480;--c:#e08a62;}}
-:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--a:#7fb3d9;--b:#6b7480;--c:#e08a62;}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
-main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
-h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
-h1{font-size:2rem;margin:.2em 0 .4em}
-h2{font-size:1.25rem;margin:2.2em 0 .5em}
-.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.lede{font-size:1.15rem;color:var(--muted)}
-.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px}
-.stat b{display:block;font:700 1.6rem/1.1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-.stat span{font-size:.85rem;color:var(--muted)}
-table{width:100%;border-collapse:collapse;font:.95rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-.wrap{overflow-x:auto}
-figure{margin:20px 0}
-figcaption{font-size:.85rem;color:var(--muted)}
-.chart-title{font:600 .9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:0 0 10px}
-.bars{display:grid;gap:10px;font:.9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-.bar-row{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px;align-items:center}
-.bar-track{display:flex;align-items:center;gap:8px;min-width:0}
-.bar{display:block;height:22px;border-radius:3px;max-width:calc(100% - 78px)}
-.bar-value{white-space:nowrap;font-variant-numeric:tabular-nums}
-@media (max-width:480px){.bar-row{grid-template-columns:1fr}}
-svg text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;fill:var(--text)}
-ol li,ul li{margin:.35em 0}
-a{color:var(--accent)}
-.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
-</style>
+<link rel="stylesheet" href="../../assets/styles.css">
 </head>
 <body>
 <main>
+<p class="back"><a href="../../">← All projects</a></p>
 <p class="eyebrow">Case study · Value assessment</p>
 <h1>Putting a number on compliance risk</h1>
 <p class="lede">A risk-based renewal model for a customer who wants to cancel. I built it to show how I turn an audit history into a business case a finance lead can sign off.</p>
+
+<section class="summary" aria-label="Project summary">
+<dl>
+  <dt>Skill shown</dt>
+  <dd>Business cases and ROI</dd>
+  <dt>The problem</dt>
+  <dd>A six-school trust planned to cancel £11,000 a year of compliance support to save money, with 18 audit actions still open.</dd>
+  <dt>What I did</dt>
+  <dd>Priced the risk of each open action, compared three options over three years, and ran conservative, expected and high scenarios.</dd>
+  <dt>Result</dt>
+  <dd>In the expected case, keeping the support was the cheapest option (£49,100 against £72,900 for cancelling), and it paid back in about seven months.</dd>
+  <dt>Tools used</dt>
+  <dd>Excel (scenario modelling, lookup formulas), Claude Code (analysis and build), HTML/CSS, GitHub Pages</dd>
+</dl>
+</section>
 
 <p class="note">The organisation, actions and figures here are fictional. The approach is based on renewal conversations I've had in compliance services, where I've kept clients by setting the cost of non-compliance against the cost of support.</p>
 
@@ -101,7 +82,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 <h2>What happens after the renewal</h2>
 <p>The same model becomes the scorecard. I'd agree targets with the customer, such as every high-risk action owned within 30 days and closed within 90. Then I'd track progress in a shared dashboard and review it each term. At renewal, the conversation is about results already delivered, not a promise.</p>
 
-<h2>Explore the model</h2>
+<h2>Downloads</h2>
 <p class="downloads">
   <a href="model/compliance_value_model.xlsx" download>Download the Excel model</a>
   <a href="data/outstanding_actions.csv" download>Download the dataset (CSV)</a>
@@ -110,7 +91,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 
 <footer>
 <p>Fictional organisation and figures, for illustration only. Probabilities and impacts are modelling assumptions, not legal advice or real penalty data.</p>
-<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">More case studies</a></p>
+<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">All projects</a></p>
 </footer>
 </main>
 </body>
