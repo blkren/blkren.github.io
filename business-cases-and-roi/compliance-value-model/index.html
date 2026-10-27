@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compliance Renewal Value Model</title>
+<meta name="description" content="A case study in value assessment: a risk-based ROI and three-year cost model for renewing compliance support, built on a fictional dataset.">
+<style>
+:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--a:#1f5f8b;--b:#9aa5b1;--c:#b5562f;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--a:#7fb3d9;--b:#6b7480;--c:#e08a62;}}
+:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--a:#7fb3d9;--b:#6b7480;--c:#e08a62;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
+h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0 .4em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em}
+.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.15rem;color:var(--muted)}
+.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px}
+.stat b{display:block;font:700 1.6rem/1.1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.stat span{font-size:.85rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font:.95rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.wrap{overflow-x:auto}
+figure{margin:20px 0}
+figcaption{font-size:.85rem;color:var(--muted)}
+.chart-title{font:600 .9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:0 0 10px}
+.bars{display:grid;gap:10px;font:.9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.bar-row{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:10px;align-items:center}
+.bar-track{display:flex;align-items:center;gap:8px;min-width:0}
+.bar{display:block;height:22px;border-radius:3px;max-width:calc(100% - 78px)}
+.bar-value{white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:480px){.bar-row{grid-template-columns:1fr}}
+svg text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;fill:var(--text)}
+ol li,ul li{margin:.35em 0}
+a{color:var(--accent)}
+.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Case study · Value assessment</p>
+<h1>Putting a number on compliance risk</h1>
+<p class="lede">A risk-based renewal model for a customer who wants to cancel. I built it to show how I turn an audit history into a business case a finance lead can sign off.</p>
+
+<p class="note">The organisation, actions and figures here are fictional. The approach is based on renewal conversations I've had in compliance services, where I've kept clients by setting the cost of non-compliance against the cost of support.</p>
+
+<h2>The situation</h2>
+<p>Northfield Learning Trust runs six schools. A new business manager is reviewing every budget line and plans to cancel the trust's fire safety, health and safety, and data protection support, worth £11,000 a year. On paper it looks like an easy saving.</p>
+<p>The audit history tells a different story. Staff changes meant ownership of several actions was never handed over, and some high-risk items have been open for months.</p>
+
+<div class="stats">
+  <div class="stat"><b>18</b><span>outstanding audit actions</span></div>
+  <div class="stat"><b>8</b><span>rated high risk</span></div>
+  <div class="stat"><b>14</b><span>with no owner assigned</span></div>
+  <div class="stat"><b>£11k</b><span>annual cost of support</span></div>
+</div>
+
+<h2>How I built the case</h2>
+<ol>
+  <li><strong>Discovery.</strong> Start with the customer's own data: the audit history, which actions are open, how long, and who owns them.</li>
+  <li><strong>Baseline.</strong> Put an expected cost on each open action: the probability it leads to enforcement within a year, multiplied by the likely impact (fine, legal costs and remediation). Fire door breaches matter here, because fire safety offences can attract unlimited fines.</li>
+  <li><strong>Value drivers.</strong> Risk removed by closing actions with specialist support, and the business manager's time saved by not chasing them alone.</li>
+  <li><strong>Options and total cost.</strong> Compare three options over three years: keep the support, bring compliance in-house, or cancel with no replacement.</li>
+  <li><strong>Scenarios.</strong> Run conservative, expected and high cases, and show every assumption so the customer can challenge it.</li>
+</ol>
+
+<h2>What the model shows</h2>
+<p>In the expected scenario, the trust is carrying about <strong>£20,900 a year</strong> of risk exposure from its open actions, almost twice what the support costs. Keeping the service is the cheapest option over three years once risk and time are counted.</p>
+
+<figure>
+<p class="chart-title">Three-year total cost, including risk exposure (expected scenario)</p>
+<div class="bars" role="img" aria-label="Three-year total cost by option. Keep provider support: £49,100. Bring compliance in-house: £103,300. Cancel with no replacement: £72,900.">
+  <div class="bar-row"><span class="bar-label">Keep provider support</span><span class="bar-track"><span class="bar" style="width:47.5%;background:var(--a)"></span><span class="bar-value">£49,100</span></span></div>
+  <div class="bar-row"><span class="bar-label">Bring compliance in-house</span><span class="bar-track"><span class="bar" style="width:100%;background:var(--b)"></span><span class="bar-value">£103,300</span></span></div>
+  <div class="bar-row"><span class="bar-label">Cancel, no replacement</span><span class="bar-track"><span class="bar" style="width:70.5%;background:var(--c)"></span><span class="bar-value">£72,900</span></span></div>
+</div>
+<figcaption>Includes service fees, staff costs, the business manager's time and expected risk exposure. Risk exposure is an expected value, not a cash cost.</figcaption>
+</figure>
+
+<div class="wrap">
+<table>
+  <thead><tr><th>Scenario</th><th class="num">Risk exposure a year</th><th class="num">Exposure per £1 of fees</th><th class="num">Year 1 ROI of keeping support</th></tr></thead>
+  <tbody>
+    <tr><td>Conservative</td><td class="num">£8,075</td><td class="num">0.7x</td><td class="num">−18%</td></tr>
+    <tr><td>Expected</td><td class="num">£20,925</td><td class="num">1.9x</td><td class="num">75%</td></tr>
+    <tr><td>High</td><td class="num">£42,175</td><td class="num">3.8x</td><td class="num">230%</td></tr>
+  </tbody>
+</table>
+</div>
+<p>In the expected case, the Year 1 fees pay back in about <strong>seven months</strong>.</p>
+
+<h2>Why I show the conservative case</h2>
+<p>In the conservative scenario, the financial return on its own is negative. I'd still show it. A value case that only works with optimistic numbers won't survive a finance review, and being open about it builds trust. It also moves the conversation to what the spreadsheet can't price: prosecution risk, the safety of pupils and staff, and the trust's reputation with its board and parents.</p>
+
+<h2>What happens after the renewal</h2>
+<p>The same model becomes the scorecard. I'd agree targets with the customer, such as every high-risk action owned within 30 days and closed within 90. Then I'd track progress in a shared dashboard and review it each term. At renewal, the conversation is about results already delivered, not a promise.</p>
+
+<h2>Explore the model</h2>
+<p class="downloads">
+  <a href="model/compliance_value_model.xlsx" download>Download the Excel model</a>
+  <a href="data/outstanding_actions.csv" download>Download the dataset (CSV)</a>
+</p>
+<p>Change the blue inputs and pick a scenario on the Inputs sheet. Every formula is live, and the key assumptions are highlighted for agreeing with a customer.</p>
+
+<footer>
+<p>Fictional organisation and figures, for illustration only. Probabilities and impacts are modelling assumptions, not legal advice or real penalty data.</p>
+<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">More case studies</a></p>
+</footer>
+</main>
+</body>
+</html>

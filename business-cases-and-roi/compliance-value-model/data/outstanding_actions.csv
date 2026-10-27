@@ -1,0 +1,19 @@
+action_id,school,service_area,action,risk_rating,days_overdue,owner_assigned
+FS-01,Ashgrove Primary,Fire safety,Fire door self-closers missing on two classroom doors,High,142,No
+FS-02,Beacon Hill Academy,Fire safety,Fire risk assessment overdue for review,High,95,No
+FS-03,Danbury Secondary,Fire safety,Fire door intumescent strips damaged in science block,High,120,No
+FS-04,Fernwood Academy,Fire safety,Emergency lighting test records incomplete,Medium,60,Yes
+FS-05,Cedar Vale Primary,Fire safety,Fire drill not logged for spring term,Medium,45,No
+FS-06,Elmfield Primary,Fire safety,Evacuation plan for wheelchair user not documented,High,80,No
+HS-01,Danbury Secondary,Health and safety,Asbestos management plan not updated after works,High,110,No
+HS-02,Ashgrove Primary,Health and safety,Legionella water temperature checks not recorded,High,75,No
+HS-03,Beacon Hill Academy,Health and safety,DT workshop machinery guarding inspection overdue,Medium,50,Yes
+HS-04,Elmfield Primary,Health and safety,Playground equipment annual inspection overdue,Medium,40,No
+HS-05,Fernwood Academy,Health and safety,COSHH assessments missing for cleaning products,Medium,65,No
+HS-06,Cedar Vale Primary,Health and safety,Accident reporting process not shared with new staff,Low,30,Yes
+DP-01,Beacon Hill Academy,Data protection,Subject access request responded to late,High,35,No
+DP-02,Danbury Secondary,Data protection,No DPIA for new CCTV system,High,90,No
+DP-03,Ashgrove Primary,Data protection,Records of processing not updated,Medium,120,No
+DP-04,Fernwood Academy,Data protection,Staff data protection training lapsed,Medium,70,No
+DP-05,Elmfield Primary,Data protection,Retention schedule not applied to pupil records,Low,150,Yes
+DP-06,Cedar Vale Primary,Data protection,Supplier data processing agreements missing,Medium,85,No
