@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Health Score Model</title>
+<meta name="description" content="A first-principles customer health score and churn-risk model for a fictional book of 80 SaaS accounts, with an Excel model and dataset.">
+<style>
+:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--red:#c0453a;--amber:#d9962b;--lgreen:#7fb069;--dgreen:#2f7a3e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}}
+:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
+h1,h2,h3,.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0 .4em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em}
+.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.15rem;color:var(--muted)}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 18px;margin:20px 0}
+.summary dl{margin:0}
+.summary div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.summary div:last-child{border-bottom:0}
+.summary dt{font:600 .85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
+.summary dd{margin:0}
+@media (max-width:520px){.summary div{grid-template-columns:1fr;gap:2px}}
+.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
+table{width:100%;border-collapse:collapse;font:.92rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.wrap{overflow-x:auto}
+.chart-title{font:600 .9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:16px 0 10px}
+.bars{display:grid;gap:10px;font:.9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.bar-row{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
+.bar-track{display:flex;align-items:center;gap:8px;min-width:0}
+.bar{display:block;height:22px;border-radius:3px;max-width:calc(100% - 130px)}
+.bar-value{white-space:nowrap;font-variant-numeric:tabular-nums}
+.chip{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;color:#fff}
+.red{background:var(--red)}.amber{background:var(--amber);color:#1d2129}.lgreen{background:var(--lgreen);color:#1d2129}.dgreen{background:var(--dgreen)}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+ol li,ul li{margin:.35em 0}
+a{color:var(--accent)}
+.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Retention and churn · Health scoring</p>
+<h1>Which customers need you this week?</h1>
+<p class="lede">A customer health score built from first principles, for a fictional book of 80 accounts on an AI-enabled SaaS platform. It turns signals from the CRM and CS platform into a score, a priority list and a next action for every account.</p>
+
+<div class="summary sans">
+<dl>
+  <div><dt>Skill shown</dt><dd>Designing a health score, prioritising churn risk by revenue, and turning data into actions</dd></div>
+  <div><dt>The problem</dt><dd>80 accounts, £1.54m ARR and one CSM. Without a consistent score, attention goes to whoever shouts loudest, not to the revenue most at risk.</dd></div>
+  <div><dt>What I did</dt><dd>Chose signals that genuinely predict renewal, grouped and weighted them, set bands and hard caps, and linked each band and segment to a play</dd></div>
+  <div><dt>Result</dt><dd>£371k ARR (24%) flagged red or amber, a ranked top 10 to act on first, and 29 expansion candidates worth £576k ARR</dd></div>
+  <div><dt>Tools used</dt><dd>Excel (weighted scoring, ranking formulas), Claude (analysis and build), HTML/CSS, GitHub Pages</dd></div>
+</dl>
+</div>
+
+<p class="note">All accounts, names and figures are fictional. The signals and bands are based on how I've run health scoring in practice. The weightings are my proposed starting point.</p>
+
+<h2>Starting from first principles</h2>
+<p>A health score should answer one question: <strong>how likely is this customer to renew and grow?</strong> So I only kept signals that explain renewal, and grouped them by the reason a customer stays or leaves.</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Dimension</th><th class="num">Weight</th><th>Signals</th><th>Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td>Adoption</td><td class="num">35%</td><td>Workflows live vs contracted, last admin login, AI features in use</td><td>Customers renew what they use. AI adoption shows they're getting the newest value.</td></tr>
+    <tr><td>Relationship</td><td class="num">35%</td><td>Customer Pulse score, days since they engaged, days since we contacted them, contacts mapped (sponsor, champion, 2+ admins)</td><td>Sentiment and coverage. One contact is a single point of failure.</td></tr>
+    <tr><td>Support</td><td class="num">15%</td><td>Open tickets, escalated tickets</td><td>Unresolved friction erodes trust, and escalations count most.</td></tr>
+    <tr><td>Commercial</td><td class="num">15%</td><td>Overdue payment flag</td><td>Often the earliest sign of budget pressure.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Each signal is scored 0 to 10 against clear thresholds, then combined into a score out of 10.</p>
+
+<h2>Bands, caps and plays</h2>
+<p><span class="chip red">Red 1–4</span> <span class="chip amber">Amber 5–6</span> <span class="chip lgreen">Light green 7–8</span> <span class="chip dgreen">Dark green 9–10</span></p>
+<ul>
+  <li><strong>Hard caps:</strong> an overdue payment or two or more escalations caps the score at 6 (amber), however good everything else looks. A happy customer with an unpaid invoice isn't healthy.</li>
+  <li><strong>Plays depend on band and segment.</strong> Every red or amber account gets an account review first. Then it's an executive call for enterprise accounts, a check-in for mid-market, and a check-in plus targeted self-help for SMB. Dark green accounts move to expansion and advocacy.</li>
+  <li><strong>Priority</strong> ranks red and amber accounts by ARR × (10 − score) ÷ 10, weighted up when renewal is within 90 or 180 days. The first call goes to where the most revenue is at risk soonest.</li>
+</ul>
+
+<h2>What the model shows</h2>
+<p class="chart-title">ARR by health band (£1.54m across 80 accounts)</p>
+<div class="bars" role="img" aria-label="ARR by band. Red: £171k across 10 accounts. Amber: £200k across 16 accounts. Light green: £668k across 28 accounts. Dark green: £500k across 26 accounts.">
+  <div class="bar-row"><span>Red</span><span class="bar-track"><span class="bar" style="width:25.6%;background:var(--red)"></span><span class="bar-value">£171k · 10 accounts</span></span></div>
+  <div class="bar-row"><span>Amber</span><span class="bar-track"><span class="bar" style="width:29.9%;background:var(--amber)"></span><span class="bar-value">£200k · 16 accounts</span></span></div>
+  <div class="bar-row"><span>Light green</span><span class="bar-track"><span class="bar" style="width:100%;background:var(--lgreen)"></span><span class="bar-value">£668k · 28 accounts</span></span></div>
+  <div class="bar-row"><span>Dark green</span><span class="bar-track"><span class="bar" style="width:74.8%;background:var(--dgreen)"></span><span class="bar-value">£500k · 26 accounts</span></span></div>
+</div>
+
+<ul>
+  <li><strong>£371k ARR (24%)</strong> is red or amber, and 8 of those accounts renew within 90 days.</li>
+  <li><strong>10 accounts</strong> are capped by an overdue payment or repeated escalations.</li>
+  <li><strong>29 expansion candidates</strong> (£576k ARR) score 8 or more and are either using nearly everything they've bought or showing a growth signal, such as new funding or hiring.</li>
+</ul>
+
+<p class="chart-title">First five accounts to act on</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Account</th><th>Segment</th><th class="num">ARR</th><th class="num">Score</th><th class="num">Renews in</th><th>Play</th></tr></thead>
+  <tbody>
+    <tr><td>Yarrow Foods</td><td>Enterprise</td><td class="num">£79,500</td><td class="num"><span class="chip red">2.6</span></td><td class="num">90 days</td><td>Executive call within 5 working days; joint recovery plan</td></tr>
+    <tr><td>Ember Finance</td><td>Enterprise</td><td class="num">£79,000</td><td class="num"><span class="chip amber">6.9</span></td><td class="num">64 days</td><td>Executive call (renewal within 120 days)</td></tr>
+    <tr><td>Cobalt Charity</td><td>Mid-market</td><td class="num">£29,000</td><td class="num"><span class="chip red">4.7</span></td><td class="num">351 days</td><td>Check-in within 5 working days; recovery plan</td></tr>
+    <tr><td>Tidal Recruitment</td><td>Mid-market</td><td class="num">£21,000</td><td class="num"><span class="chip amber">5.6</span></td><td class="num">68 days</td><td>Check-in within 2 weeks</td></tr>
+    <tr><td>Maple Retail</td><td>Mid-market</td><td class="num">£15,000</td><td class="num"><span class="chip red">3.3</span></td><td class="num">248 days</td><td>Check-in within 5 working days; recovery plan</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>What I'd do next with real data</h2>
+<p>The weights are a starting hypothesis, not the truth. With a real book, I'd score last year's accounts and check the scores against who actually churned or expanded. I'd then adjust the weights until red reliably means risk and dark green reliably means growth. I'd also review the thresholds each quarter with the team, so the score stays something CSMs trust and act on.</p>
+
+<h2>Explore the model</h2>
+<p class="downloads">
+  <a href="model/health_score_model.xlsx" download>Download the Excel model</a>
+  <a href="data/accounts.csv" download>Download the dataset (CSV)</a>
+</p>
+<p>Change the weights, thresholds or bands on the Inputs sheet and every score, band, priority and play updates.</p>
+
+<footer>
+<p>Fictional accounts and figures, for illustration only.</p>
+<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a></p>
+</footer>
+</main>
+</body>
+</html>

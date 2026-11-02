@@ -12,7 +12,7 @@ All organisations, people and figures in these projects are fictional. The metho
 | --- | --- | --- |
 | [business-cases-and-roi/](business-cases-and-roi/) | Building business cases and showing return on investment | [Compliance Renewal Value Model](business-cases-and-roi/compliance-value-model/) |
 | [ai-workflows/](ai-workflows/) | Using AI to speed up Customer Success work | Coming soon |
-| [retention-and-churn/](retention-and-churn/) | Spotting churn risk and keeping customers | Coming soon |
+| [retention-and-churn/](retention-and-churn/) | Spotting churn risk and keeping customers | [AI Agent Customer Health Score](retention-and-churn/ai-agent-health-score/) |
 | [cs-operations/](cs-operations/) | Processes, reporting and tooling for CS teams | Coming soon |
 
 The home page only shows a skill area once it has a project.

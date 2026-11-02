@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agent Customer Health Score</title>
+<meta name="description" content="A case study in retention: a customer health score for an AI agent product used by regulated service businesses, built on a fictional dataset.">
+<style>
+:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--red:#c0453a;--amber:#d9962b;--lgreen:#7fb069;--dgreen:#2f7a3e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}}
+:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
+h1,h2,h3,.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0 .4em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em}
+.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.15rem;color:var(--muted)}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 18px;margin:20px 0}
+.summary dl{margin:0}
+.summary div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.summary div:last-child{border-bottom:0}
+.summary dt{font:600 .85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
+.summary dd{margin:0}
+@media (max-width:520px){.summary div{grid-template-columns:1fr;gap:2px}}
+.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
+table{width:100%;border-collapse:collapse;font:.92rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.wrap{overflow-x:auto}
+.chart-title{font:600 .9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:16px 0 10px}
+.bars{display:grid;gap:10px;font:.9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.bar-row{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
+.bar-track{display:flex;align-items:center;gap:8px;min-width:0}
+.bar{display:block;height:22px;border-radius:3px;max-width:calc(100% - 130px)}
+.bar-value{white-space:nowrap;font-variant-numeric:tabular-nums}
+.chip{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;color:#fff}
+.red{background:var(--red)}.amber{background:var(--amber);color:#1d2129}.lgreen{background:var(--lgreen);color:#1d2129}.dgreen{background:var(--dgreen)}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+ol li,ul li{margin:.35em 0}
+a{color:var(--accent)}
+.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
+/* Additions for this page: light band chips with dark text, and the dimension grid. */
+.chip.healthy{background:#d7efdf;color:#1d2129}.chip.watch{background:#fbe8c4;color:#1d2129}.chip.risk{background:#f7d4cc;color:#1d2129}
+.chip{white-space:nowrap}
+.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0}
+.dim{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.dim h3{font-size:1rem;margin:0 0 .2em}
+.dim .q{margin:0 0 .5em;color:var(--muted);font-size:.9rem;font-style:italic}
+.dim ul{margin:0;padding-left:1.1em;font:.88rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.dim li{margin:.25em 0}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Retention and churn · Health scoring</p>
+<h1>A health score for an AI agent</h1>
+<p class="lede">How I'd redesign a customer health score when the real question isn't "are they logging in?" but "is the AI doing the work well enough that the customer relies on it and can see the value?"</p>
+
+<div class="summary sans">
+<dl>
+  <div><dt>Skill shown</dt><dd>Retention and churn</dd></div>
+  <div><dt>The problem</dt><dd>Standard health scores count logins and usage. For an AI agent that handles calls, bookings and urgent requests for regulated service businesses, usage says little about whether the AI is getting it right, or whether the customer can see the value.</dd></div>
+  <div><dt>What I did</dt><dd>Designed a score of 24 metrics across six dimensions, weighted by lifecycle stage, with red-flag caps for safety and compliance incidents and a data confidence figure. I built it as a formula-driven Excel model and ran it on eight sample accounts.</dd></div>
+  <div><dt>Result</dt><dd>41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it's new and busy.</dd></div>
+  <div><dt>Tools used</dt><dd>Excel; Claude for research and drafting</dd></div>
+</dl>
+</div>
+
+<p class="note">The organisations, accounts and figures here are fictional. The product is described generically: an AI agent that answers calls and messages, books appointments and triages urgent requests for regulated service businesses, such as dental practices, physiotherapy clinics, heating and plumbing firms and letting agents.</p>
+
+<h2>Why a standard health score fails for AI agents</h2>
+<p>A typical SaaS health score rewards activity: logins, seats used, features clicked. An AI agent can be busy and still failing. It can handle hundreds of calls while staff quietly redo its work, route the hard calls around it, or lose trust after one bad answer. In a regulated business a wrong answer isn't just poor service. It can be a safety, data protection or regulatory breach.</p>
+<p>So I built this score on six principles:</p>
+<ol>
+  <li><strong>Outcomes first, activity second.</strong> I give outcomes the most weight because that's what the customer renews for.</li>
+  <li><strong>Measure the whole value stream.</strong> That includes the hand-off from AI to staff, because that's where urgent requests get lost.</li>
+  <li><strong>AI quality is its own dimension.</strong> I don't let high usage hide a high error rate.</li>
+  <li><strong>Instrument before you score.</strong> Missing data lowers a confidence figure. It never counts as zero.</li>
+  <li><strong>Combine numbers with CSM judgement.</strong> A CSM can override the score, but only with a written reason.</li>
+  <li><strong>Treat weights as a hypothesis.</strong> I test them against real renewals and churn, and change them when they're wrong.</li>
+</ol>
+
+<h2>The six dimensions</h2>
+<p>Each dimension answers one question and has four metrics. Every metric is scaled from 0 to 100 in a straight line between a red threshold and a green threshold.</p>
+<div class="dims">
+  <section class="dim">
+    <h3>Value realised</h3>
+    <p class="q">Is the customer getting the outcome they bought?</p>
+    <ul>
+      <li>Outcome KPI vs target</li>
+      <li>AI resolution rate</li>
+      <li>Months since last value review</li>
+      <li>Customer-stated value</li>
+    </ul>
+  </section>
+  <section class="dim">
+    <h3>Adoption and embedding</h3>
+    <p class="q">Is the AI part of how the team works, or a side channel?</p>
+    <ul>
+      <li>Coverage of eligible work</li>
+      <li>Bypass rate</li>
+      <li>Active user ratio</li>
+      <li>Use cases live vs contracted</li>
+    </ul>
+  </section>
+  <section class="dim">
+    <h3>AI quality and trust</h3>
+    <p class="q">Is the AI getting it right, and do staff trust it?</p>
+    <ul>
+      <li>Critical errors per 1,000 tasks</li>
+      <li>Human override rate</li>
+      <li>Escalations picked up within the agreed time</li>
+      <li>End-user CSAT</li>
+    </ul>
+  </section>
+  <section class="dim">
+    <h3>Flow and service delivery</h3>
+    <p class="q">Are we getting them live and fixing problems quickly?</p>
+    <ul>
+      <li>Time to first value</li>
+      <li>Ageing open issues</li>
+      <li>Priority 1/2 time to resolve</li>
+      <li>Configuration change failure rate</li>
+    </ul>
+  </section>
+  <section class="dim">
+    <h3>Relationship and sentiment</h3>
+    <p class="q">Do the people who decide the renewal still back us?</p>
+    <ul>
+      <li>Days since executive contact</li>
+      <li>Champion strength</li>
+      <li>NPS</li>
+      <li>Negative ticket sentiment</li>
+    </ul>
+  </section>
+  <section class="dim">
+    <h3>Commercial</h3>
+    <p class="q">Does the account work as a business, for them and for us?</p>
+    <ul>
+      <li>Usage vs contracted volume</li>
+      <li>Days invoice overdue</li>
+      <li>Expansion signal</li>
+      <li>Account gross margin after AI and support costs</li>
+    </ul>
+  </section>
+</div>
+
+<h2>Where compliance sits in the model</h2>
+<p>Compliance isn't a separate checklist bolted on at the end. It runs through the score in three places:</p>
+<ul>
+  <li><strong>Critical errors (Q1)</strong> include compliance and safety errors, not just wrong facts or wrong actions.</li>
+  <li><strong>Escalation pick-up (Q3)</strong> measures whether urgent hand-offs reach a person in time. An AI that spots an emergency is no use if nobody picks it up.</li>
+  <li><strong>A critical safety or compliance incident</strong> in the last 30 days is a red flag, and caps the score at 49 however good the rest looks.</li>
+</ul>
+<p>What counts as a critical error depends on the sector. These are the ones I'd agree with each customer before go-live:</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Sector</th><th>A critical error the AI must never make</th></tr></thead>
+  <tbody>
+    <tr><td>Dental and physiotherapy</td><td>Giving clinical advice instead of routing to a clinician. Mishandling patient health data, which is special category data under UK GDPR.</td></tr>
+    <tr><td>Heating and plumbing</td><td>Treating a reported gas smell as a routine booking instead of an emergency.</td></tr>
+    <tr><td>Lettings</td><td>Answering in a way that breaks lettings rules, such as discriminatory screening.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The same thinking applies to any regulated service business: agree up front which mistakes are unacceptable, then measure them. The guardrails I'd set at go-live:</p>
+<ul>
+  <li>The agent always says it's an AI.</li>
+  <li>Complaints, payments and emergencies always go to a person.</li>
+  <li>Every conversation is kept as an audit trail.</li>
+</ul>
+
+<h2>How the score is calculated</h2>
+<ol>
+  <li>Each metric is scaled from 0 to 100 between its red and green thresholds.</li>
+  <li>The four metrics in a dimension combine into a dimension score using their weights.</li>
+  <li>The six dimension scores combine into one score using the weights for the account's lifecycle stage.</li>
+  <li>If any red flag is set, the score is capped at 49.</li>
+</ol>
+<p>What matters changes as an account matures. In onboarding I weight adoption most, because an account that isn't embedded in the first 90 days is much harder to win back later. By renewal, value and the relationship matter most, because that's what the decision rests on.</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Dimension</th><th class="num">Onboarding</th><th class="num">Adoption</th><th class="num">Mature</th><th class="num">Renewal</th></tr></thead>
+  <tbody>
+    <tr><td>Value realised</td><td class="num">15%</td><td class="num">20%</td><td class="num">25%</td><td class="num">30%</td></tr>
+    <tr><td>Adoption and embedding</td><td class="num">30%</td><td class="num">25%</td><td class="num">20%</td><td class="num">15%</td></tr>
+    <tr><td>AI quality and trust</td><td class="num">20%</td><td class="num">20%</td><td class="num">20%</td><td class="num">15%</td></tr>
+    <tr><td>Flow and service delivery</td><td class="num">20%</td><td class="num">15%</td><td class="num">10%</td><td class="num">5%</td></tr>
+    <tr><td>Relationship and sentiment</td><td class="num">10%</td><td class="num">10%</td><td class="num">15%</td><td class="num">20%</td></tr>
+    <tr><td>Commercial</td><td class="num">5%</td><td class="num">10%</td><td class="num">10%</td><td class="num">15%</td></tr>
+  </tbody>
+</table>
+</div>
+<p><strong>Red flags.</strong> Any one of these caps the score at 49: the sponsor or champion has left; a critical safety or compliance incident in the last 30 days; an invoice 60 or more days overdue; a competitor evaluation or notice given. I use a cap because these events can end an account on their own, and an average would dilute them.</p>
+<p><strong>Bands.</strong> <span class="chip healthy">Healthy</span> 75 and above, <span class="chip watch">Watch</span> 50 to 74, <span class="chip risk">At risk</span> below 50. A drop of 10 or more points triggers an alert, whatever the band.</p>
+<p><strong>Confidence.</strong> If a metric has no data, it's left out and the data confidence figure goes down. Below 70%, the score is labelled low confidence. I'd rather show an honest gap than a precise-looking number built on zeros.</p>
+
+<h2>What the model shows</h2>
+<p>Results as at 29 October 2026, across eight sample accounts.</p>
+<p class="chart-title">ARR by health band (£645,000 across 8 accounts)</p>
+<div class="bars" role="img" aria-label="ARR by health band. Healthy: £264,000 across 2 accounts. Watch: £114,000 across 2 accounts. At risk: £267,000 across 4 accounts.">
+  <div class="bar-row"><span>Healthy</span><span class="bar-track"><span class="bar" style="width:98.9%;background:var(--dgreen)"></span><span class="bar-value">£264,000 · 2 accounts</span></span></div>
+  <div class="bar-row"><span>Watch</span><span class="bar-track"><span class="bar" style="width:42.7%;background:var(--amber)"></span><span class="bar-value">£114,000 · 2 accounts</span></span></div>
+  <div class="bar-row"><span>At risk</span><span class="bar-track"><span class="bar" style="width:100%;background:var(--red)"></span><span class="bar-value">£267,000 · 4 accounts</span></span></div>
+</div>
+
+<ul>
+  <li><strong>The ARR-weighted score is 69.</strong></li>
+  <li><strong>41% of ARR is at risk.</strong> Most of it is one account: Brightwater Clinics, £180,000, still in onboarding.</li>
+</ul>
+
+<div class="wrap">
+<table>
+  <thead><tr><th>Account</th><th>Sector</th><th>Segment</th><th>Stage</th><th class="num">ARR</th><th class="num">Score</th><th>Band</th><th class="num">Change</th><th>Alert</th><th>Weakest dimension</th></tr></thead>
+  <tbody>
+    <tr><td>Larch Dental Group</td><td>Dental</td><td>Enterprise</td><td>Mature</td><td class="num">£240,000</td><td class="num">100</td><td><span class="chip healthy">Healthy</span></td><td class="num">+23</td><td>None</td><td>Value realised</td></tr>
+    <tr><td>Northgate Dental</td><td>Dental</td><td>SMB</td><td>Adoption</td><td class="num">£24,000</td><td class="num">91</td><td><span class="chip healthy">Healthy</span></td><td class="num">+23</td><td>None</td><td>Value realised</td></tr>
+    <tr><td>Cobalt Heating &amp; Plumbing</td><td>Heating and plumbing</td><td>Mid-market</td><td>Mature</td><td class="num">£96,000</td><td class="num">54</td><td><span class="chip watch">Watch</span></td><td class="num">-27</td><td>Sharp drop</td><td>Relationship and sentiment</td></tr>
+    <tr><td>Harbour Physio</td><td>Physiotherapy</td><td>SMB</td><td>Onboarding</td><td class="num">£18,000</td><td class="num">53</td><td><span class="chip watch">Watch</span></td><td class="num">New</td><td>None</td><td>Adoption and embedding</td></tr>
+    <tr><td>Fenwick Gas Services</td><td>Heating and plumbing</td><td>Mid-market</td><td>Adoption</td><td class="num">£60,000</td><td class="num">49</td><td><span class="chip risk">At risk</span></td><td class="num">-21</td><td>Red flag (critical safety incident; would be 73)</td><td>AI quality and trust</td></tr>
+    <tr><td>Oakridge Lettings</td><td>Lettings</td><td>SMB</td><td>Renewal</td><td class="num">£12,000</td><td class="num">49</td><td><span class="chip risk">At risk</span></td><td class="num">-6</td><td>Red flag (competitor evaluation; would be 63)</td><td>Value realised</td></tr>
+    <tr><td>Brightwater Clinics</td><td>Physiotherapy and dental</td><td>Enterprise</td><td>Onboarding</td><td class="num">£180,000</td><td class="num">45</td><td><span class="chip risk">At risk</span></td><td class="num">New</td><td>None (data confidence 79%)</td><td>Adoption and embedding</td></tr>
+    <tr><td>Meridian Physiotherapy</td><td>Physiotherapy</td><td>SMB</td><td>Renewal</td><td class="num">£15,000</td><td class="num">26</td><td><span class="chip risk">At risk</span></td><td class="num">-36</td><td>Red flag (champion left)</td><td>Relationship and sentiment</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Fenwick Gas Services: a good average, capped by one incident</h3>
+<p>On the weighted average alone, Fenwick scores 73, a reasonable Watch. But it had a critical safety incident in the last 30 days, so the score is capped at 49 and the account moves to At risk. As an illustrative example, picture a customer reporting a gas smell and the agent booking it as a routine job. One call like that matters more than a month of good resolution rates. The play is a quality escalation: review the error with Product, fix the pattern, and confirm that emergencies reach a person.</p>
+
+<h3>Cobalt Heating &amp; Plumbing: a sharp drop while still in Watch</h3>
+<p>Cobalt dropped 27 points in one period but still sits in Watch at 54. A view that only shows bands would show amber, not a problem. The sharp-drop alert catches it. Its weakest dimension is relationship and sentiment. That's an early warning I'd act on now, months before the renewal conversation.</p>
+
+<h3>Brightwater Clinics: big, new and at risk</h3>
+<p>Brightwater is the largest at-risk account at £180,000, and it's only in onboarding. Its volume looks busy, so a usage-only score would rate it fine. This score puts adoption first at this stage, and adoption and embedding is its weakest dimension: the agent isn't yet handling enough of the work the customer bought it for. Data confidence is 79%, above the 70% threshold, so the score of 45 stands, but I'd close the data gaps quickly. The play is an adoption sprint.</p>
+
+<h2>Alerts and plays</h2>
+<p>Each account gets one alert, in priority order: red flag, then sharp drop, then low confidence, then renewal at risk. The recommended play comes from the weakest dimension.</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Weakest dimension</th><th>Play</th></tr></thead>
+  <tbody>
+    <tr><td>Value realised</td><td>Run a value review: re-baseline the outcome KPI, share an ROI summary, agree the next target.</td></tr>
+    <tr><td>Adoption and embedding</td><td>Adoption sprint: coverage audit, close channel gaps, retrain staff, tackle bypass with the team lead.</td></tr>
+    <tr><td>AI quality and trust</td><td>Quality escalation: error review with Product, fix the top three error patterns, confirm the hand-off time.</td></tr>
+    <tr><td>Flow and service delivery</td><td>Unblock delivery: triage ageing issues with Engineering, set a fix date, review the change process.</td></tr>
+    <tr><td>Relationship and sentiment</td><td>Re-engage: executive sponsor meeting, identify or develop a new champion, close the loop on feedback.</td></tr>
+    <tr><td>Commercial</td><td>Commercial review: right-size the contract, resolve billing, review cost to serve.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Events to instrument before go-live</h2>
+<p>A score is only as good as its data. These are the product events I'd ask for before the first customer goes live, so the score isn't built on guesses.</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Event</th><th>What it feeds</th></tr></thead>
+  <tbody>
+    <tr><td><code>ai.task.started</code>, <code>ai.task.resolved</code></td><td>AI resolution rate (V2)</td></tr>
+    <tr><td><code>user.session.started</code></td><td>Active user ratio (A3)</td></tr>
+    <tr><td><code>ai.output.overridden</code></td><td>Human override rate (Q2)</td></tr>
+    <tr><td><code>escalation.acknowledged</code></td><td>Escalations picked up within the agreed time (Q3)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The other metrics come from sources I'd also set up before go-live: channel logs against AI intake for coverage and bypass, a daily error review for critical errors, and a change log for configuration changes. Each critical error should be tagged by type, so safety and compliance errors can trigger the red flag.</p>
+
+<h2>How I'd calibrate it</h2>
+<ul>
+  <li><strong>Months 0 to 3.</strong> Instrument the events and run the score quietly alongside each CSM's own view. No automatic plays yet. Where the score and the CSM disagree, I'd find out why.</li>
+  <li><strong>Months 3 to 6.</strong> Compare scores with what actually happened: renewals, downgrades, churn and escalations. Adjust thresholds and weights where the score got it wrong, and review every override and its reason.</li>
+  <li><strong>Ongoing.</strong> Review the weights each quarter against renewal outcomes. Drop metrics that don't predict anything, and add new ones as customers take on new use cases.</li>
+</ul>
+<p>Three things I'd avoid:</p>
+<ol>
+  <li>Counting missing data as zero. It punishes new accounts for gaps in our own tracking.</li>
+  <li>Letting volume stand in for value. A busy agent isn't the same as a useful one.</li>
+  <li>Changing weights without testing them. Every change should be checked against real renewals and churn, and written down.</li>
+</ol>
+
+<h2>Downloads</h2>
+<p class="downloads">
+  <a href="model/ai_agent_health_score_model.xlsx" download>Download the Excel model</a>
+  <a href="data/accounts.csv" download>Download the dataset (CSV)</a>
+</p>
+<p>The workbook has five sheets: Dashboard, Metrics, Stage Weights, Account Inputs and Scoring. Change the inputs, thresholds or stage weights and every score updates.</p>
+
+<footer>
+<p>Fictional organisations and figures, for illustration only. Sector examples describe the kind of errors to guard against and are not legal or regulatory advice.</p>
+<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a> · <a href="../health-score-model/">The SaaS version</a></p>
+</footer>
+</main>
+</body>
+</html>
