@@ -3,46 +3,139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chelsea Alagoa · Customer Success portfolio</title>
-<meta name="description" content="Customer Success portfolio by Chelsea Alagoa, organised by skill: business cases and ROI, AI workflows, retention and churn, and CS operations.">
-<link rel="stylesheet" href="assets/styles.css">
+<title>Chelsea Alagoa | Customer Success portfolio</title>
+<meta name="description" content="Customer Success portfolio by Chelsea Alagoa, organised by skill: business cases and ROI, and retention and churn. Each project uses fictional data and comes with its working model.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blkren.github.io/">
+<meta property="og:title" content="Chelsea Alagoa | Customer Success portfolio">
+<meta property="og:description" content="I find where the value chain breaks between what a customer buys and the outcome they wanted, put a number on it, and build the fix. Projects organised by skill.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <p class="site-name">Chelsea Alagoa</p>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 <main>
-<p class="eyebrow">Portfolio</p>
-<h1>Chelsea Alagoa</h1>
-<p class="lede">I’m a Customer Success Manager who finds where the value chain breaks between what a customer buys and the outcome they wanted, puts a number on it, and builds the fix. Each project below shows how I do it, using fictional data.</p>
 
-<section class="cards" aria-label="Projects by skill">
+<section class="hero shell" aria-labelledby="intro-title">
+  <h1 id="intro-title">Chelsea Alagoa</h1>
+  <p class="role">Customer Success Manager</p>
+  <!-- TODO: add one short line on the roles you are open to (for example the level and type of Customer Success leadership role, and location or remote). Not added because it isn't written anywhere on the site yet. -->
 
-  <article class="card">
-    <p class="eyebrow">Business cases and ROI</p>
-    <h2><a href="business-cases-and-roi/compliance-value-model/">Compliance Renewal Value Model</a></h2>
-    <p class="result">Showed that keeping an £11k-a-year service would cost £23,800 less over three years than cancelling it.</p>
-  </article>
+  <div class="chain" aria-hidden="true">
+    <span class="chain__label chain__label--start">What a customer buys</span>
+    <span class="chain__label chain__label--break">Where the value chain breaks</span>
+    <span class="chain__label chain__label--end">The outcome they wanted</span>
+    <span class="chain__line chain__line--start"></span>
+    <svg class="chain__seam" viewBox="0 0 160 32" focusable="false">
+      <path pathLength="1" d="M-1 16 L40 16 L56 6 L74 26 L92 8 L108 23 L122 16 L161 16" />
+    </svg>
+    <span class="chain__line chain__line--end"></span>
+  </div>
 
-  <article class="card">
-    <p class="eyebrow">Retention and churn</p>
-    <h2><a href="retention-and-churn/ai-agent-health-score/">AI Agent Customer Health Score</a></h2>
-    <p class="result">Showed that 41% of ARR was at risk, mostly in one new enterprise account that a usage-only score would have missed.</p>
-  </article>
-
-  <!--
-  Card template. Copy this into the section above when a skill area has its first project.
-  Skill areas waiting for a project: AI workflows, CS operations.
-
-  <article class="card">
-    <p class="eyebrow">Skill area name</p>
-    <h2><a href="skill-folder/project-folder/">Project title</a></h2>
-    <p class="result">One-line result.</p>
-  </article>
-  -->
-
+  <div class="hero__body">
+    <p class="lede">I’m a Customer Success Manager who finds where the value chain breaks between what a customer buys and the outcome they wanted, puts a number on it, and builds the fix. Each project below shows how I do it, using fictional data.</p>
+    <p class="actions">
+      <a class="button button--primary" href="#projects">See the projects</a>
+      <a class="button" href="https://linkedin.com/in/chelseaalagoa">Connect on LinkedIn</a>
+    </p>
+  </div>
 </section>
 
-<footer>
-<p>Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a></p>
-</footer>
+<section id="projects" class="projects shell" aria-labelledby="projects-title">
+  <div class="projects__intro">
+    <h2 id="projects-title">Projects by skill</h2>
+    <p>Organised by skill, not by employer or job application, so you can go straight to the skill you are hiring for. All organisations, people and figures in these projects are fictional. The methods are the ones I use at work.</p>
+  </div>
+
+  <section class="area" aria-labelledby="area-business">
+    <div class="area__head">
+      <h3 id="area-business">Business cases and ROI</h3>
+      <p>Building business cases and showing return on investment</p>
+      <p class="area__count">1 project</p>
+    </div>
+    <div class="area__list">
+      <article class="project">
+        <h4>Compliance Renewal Value Model</h4>
+        <p class="project__desc">Showed that keeping an £11k-a-year service would cost £23,800 less over three years than cancelling it.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>Value assessment</dd></dl>
+        <a class="project__link" href="business-cases-and-roi/compliance-value-model/">Read the case study<span class="visually-hidden">: Compliance Renewal Value Model</span></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" aria-labelledby="area-retention">
+    <div class="area__head">
+      <h3 id="area-retention">Retention and churn</h3>
+      <p>Spotting churn risk and keeping customers</p>
+      <p class="area__count">2 projects</p>
+    </div>
+    <div class="area__list">
+      <article class="project">
+        <h4>AI Agent Customer Health Score</h4>
+        <p class="project__desc">Showed that 41% of ARR was at risk, mostly in one new enterprise account that a usage-only score would have missed.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>Health scoring</dd></dl>
+        <a class="project__link" href="retention-and-churn/ai-agent-health-score/">Read the case study<span class="visually-hidden">: AI Agent Customer Health Score</span></a>
+      </article>
+      <article class="project">
+        <h4>Customer Health Score Model</h4>
+        <p class="project__desc">Flagged £371k ARR (24%) as red or amber across 80 accounts, with a ranked top 10 to act on first.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>Prioritising churn risk by revenue</dd></dl>
+        <a class="project__link" href="retention-and-churn/health-score-model/">Read the case study<span class="visually-hidden">: Customer Health Score Model</span></a>
+      </article>
+    </div>
+  </section>
+
+  <!--
+  Skill area template. Copy this above when a skill area has its first project.
+  Skill areas waiting for a project:
+    AI workflows (ai-workflows/): Using AI to speed up Customer Success work
+    CS operations (cs-operations/): Processes, reporting and tooling for CS teams
+
+  <section class="area" aria-labelledby="area-SLUG">
+    <div class="area__head">
+      <h3 id="area-SLUG">Skill area name</h3>
+      <p>One-line description of the skill area</p>
+      <p class="area__count">1 project</p>
+    </div>
+    <div class="area__list">
+      <article class="project">
+        <h4>Project title</h4>
+        <p class="project__desc">One-line result.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>Skill</dd></dl>
+        <a class="project__link" href="skill-folder/project-folder/">Read the case study<span class="visually-hidden">: Project title</span></a>
+      </article>
+    </div>
+  </section>
+  -->
+</section>
+
 </main>
+
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p>Chelsea Alagoa, Customer Success Manager</p>
+    <ul>
+      <li><a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a></li>
+      <!-- TODO: add any other contact route you want recruiters to use (for example an email address or CV link). None is on the site yet. -->
+    </ul>
+    <p class="site-footer__note">All organisations, people and figures in these projects are fictional.</p>
+  </div>
+</footer>
 </body>
 </html>
