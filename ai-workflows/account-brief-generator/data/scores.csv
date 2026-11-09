@@ -1,0 +1,9 @@
+Account,Sector,Health score,Band,Change,Alert,Weakest dimension
+Larch Dental Group,Dental,100,Healthy,+23,None,Value realised
+Northgate Dental,Dental,91,Healthy,+23,None,Value realised
+Cobalt Heating & Plumbing,Heating and plumbing,54,Watch,-27,Sharp drop,Relationship and sentiment
+Harbour Physio,Physiotherapy,53,Watch,New,None,Adoption and embedding
+Fenwick Gas Services,Heating and plumbing,49,At risk,-21,Red flag (critical safety incident; would be 73),AI quality and trust
+Oakridge Lettings,Lettings,49,At risk,-6,Red flag (competitor evaluation; would be 63),Value realised
+Brightwater Clinics,Physiotherapy and dental,45,At risk,New,None (data confidence 79%),Adoption and embedding
+Meridian Physiotherapy,Physiotherapy,26,At risk,-36,Red flag (champion left),Relationship and sentiment

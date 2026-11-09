@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Score Pipeline: from Excel to SQL and Slack</title>
+<meta name="description" content="A case study in CS operations: a customer health score moved out of a spreadsheet into SQL, with score history, week-on-week alerts and a Slack summary. Fictional accounts.">
+<style>
+:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--red:#c0453a;--amber:#d9962b;--lgreen:#7fb069;--dgreen:#2f7a3e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}}
+:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
+h1,h2,h3,.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0 .4em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em}
+.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.15rem;color:var(--muted)}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 18px;margin:20px 0}
+.summary dl{margin:0}
+.summary div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.summary div:last-child{border-bottom:0}
+.summary dt{font:600 .85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
+.summary dd{margin:0}
+@media (max-width:520px){.summary div{grid-template-columns:1fr;gap:2px}}
+.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
+table{width:100%;border-collapse:collapse;font:.92rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.wrap{overflow-x:auto}
+ol li,ul li{margin:.35em 0}
+a{color:var(--accent)}
+code{font-size:.88em}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;font:.82rem/1.5 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+pre.message{white-space:pre-wrap}
+.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">CS operations · Automation and integration</p>
+<h1>From a spreadsheet to a Monday-morning alert</h1>
+<p class="lede">A health score only helps if someone sees it change in time. I moved my <a href="../../retention-and-churn/health-score-model/">80-account health score</a> out of Excel and into SQL, so it can run every week on a fresh CRM export, remember last week's scores, and tell the team in Slack what changed.</p>
+
+<div class="summary sans">
+<dl>
+  <div><dt>Skill shown</dt><dd>CS operations: turning a manual model into a repeatable, integrated process</dd></div>
+  <div><dt>The problem</dt><dd>The Excel model works, but someone has to export the data, paste it in and read the results. It goes stale between refreshes, it has no memory of last week, and nobody is told when an account slips.</dd></div>
+  <div><dt>What I did</dt><dd>Rebuilt every rule of the score as SQL views, added a score history and week-on-week alerts, and wrapped it in a small script that loads the CRM export and posts a summary to Slack through an incoming webhook.</dd></div>
+  <div><dt>Result</dt><dd>The same results as the Excel model for all 80 accounts: the same scores, bands, priority order and expansion candidates, and the same £370,750 ARR at risk. The weekly refresh is now one command that can run on a schedule.</dd></div>
+  <div><dt>Tools used</dt><dd>SQL (SQLite), Slack incoming webhooks, Python glue script (written with Claude), Excel for the original model</dd></div>
+</dl>
+</div>
+
+<p class="note">All accounts and figures are fictional, from the <a href="../../retention-and-churn/health-score-model/">Customer Health Score Model</a>. The score rules are unchanged; only where they run has changed.</p>
+
+<h2>Why move it out of Excel</h2>
+<p>Excel is the right place to design a score: anyone can see the weights and change a threshold. It's the wrong place to run one every week. Three things were missing:</p>
+<ul>
+  <li><strong>Freshness.</strong> The score is only as current as the last time someone pasted in an export.</li>
+  <li><strong>Memory.</strong> The sheet shows this week. It can't say that an account was green last week and is amber now, and that change is the most useful signal a CSM can get.</li>
+  <li><strong>Reach.</strong> Results sit in a file. The team works in Slack and the CRM.</li>
+</ul>
+
+<h2>How it works</h2>
+<ol>
+  <li><strong>Load.</strong> The CRM export (CSV) goes into a SQLite table, with each column typed so numbers compare as numbers.</li>
+  <li><strong>Score.</strong> A SQL view, <code>scored_accounts</code>, applies the same rules as the Excel Inputs sheet: signal thresholds, dimension weights, hard caps, bands, priority and plays.</li>
+  <li><strong>Remember.</strong> Each run saves every account's score to a <code>score_history</code> table. Rerunning the same day replaces that day's scores, so a mistake is easy to redo.</li>
+  <li><strong>Compare.</strong> A second view, <code>score_changes</code>, compares this run with the last one and raises an alert for each account that needs attention.</li>
+  <li><strong>Tell the team.</strong> The script builds a short summary and posts it to a Slack channel. Without <code>--post</code> it only prints it, so it's safe to test.</li>
+</ol>
+
+<h2>The score in SQL</h2>
+<p>Each signal is a <code>CASE</code> expression against the thresholds from the Excel model. This is the escalation signal, and the hard cap that stops a happy-looking account with an unpaid invoice from showing as healthy:</p>
+<pre>CASE WHEN escalated_tickets = 0 THEN 10
+     WHEN escalated_tickets &lt;= 1 THEN 5
+     WHEN escalated_tickets &lt;= 2 THEN 2
+     WHEN escalated_tickets &lt;= 3 THEN 1
+     ELSE 0 END AS s_escalations,
+...
+-- Hard cap: an overdue payment or 2+ escalations caps the score at 6.
+(payment_overdue = 'Y' OR escalated_tickets &gt;= 2) AS capped
+...
+ROUND(CASE WHEN capped AND raw_score &gt; 6 THEN 6 ELSE raw_score END + 1e-9, 1) AS health_score</pre>
+<p>The tiny <code>1e-9</code> is there for one account. Its raw score is exactly 3.25, which Excel rounds to 3.3. Floating-point maths can land on 3.2499999…, which would round to 3.2 and quietly break the match. Small details like this are why I check the results against the original, account by account.</p>
+
+<h2>Proving it matches the Excel model</h2>
+<p>Moving a score to a new system is only safe if the numbers don't move with it. The script has a <code>--self-check</code> mode that scores the sample data and compares it with the Excel model's published results:</p>
+<div class="wrap">
+<table>
+  <thead><tr><th>Result</th><th>Excel model</th></tr></thead>
+  <tbody>
+    <tr><td>ARR at risk (red and amber)</td><td>£370,750</td></tr>
+    <tr><td>Red or amber accounts renewing within 90 days</td><td>8</td></tr>
+    <tr><td>Accounts capped by payment or escalations</td><td>10</td></tr>
+    <tr><td>Expansion candidates</td><td>29 (£575,500 ARR)</td></tr>
+    <tr><td>First five to call</td><td>Yarrow Foods, Ember Finance, Cobalt Charity, Tidal Recruitment, Maple Retail</td></tr>
+  </tbody>
+</table>
+</div>
+<p>I also checked all 80 accounts one by one, comparing score, band, priority and expansion flag with the workbook. The first pass found one difference: an expansion flag that came from Windows line endings in the CSV, not the logic. That's exactly the kind of bug a migration introduces and a spot check misses.</p>
+
+<h2>What changes each week</h2>
+<p>An account appears in the "changed" list when any of these is true since the last run:</p>
+<ul>
+  <li>It moved into red or amber.</li>
+  <li>Its score dropped by 1 point or more, whatever its band.</li>
+  <li>It became capped, because of a newly overdue payment or a second escalation.</li>
+</ul>
+<p>The second rule matters most. A drop from 8.4 to 7.2 stays light green, so a band-only view shows nothing, but it's often the earliest warning there is.</p>
+
+<h2>The Slack summary</h2>
+<p>This is the message from a first run on the sample data. On later runs the last section lists the accounts that changed.</p>
+<pre class="message">*Customer health, week of 2026-11-02*
+£370,750 ARR (24%) is red or amber. 8 of those accounts renew within 90 days.
+
+*Call first*
+1. Yarrow Foods (Enterprise, £79,500): 2.6 Red, renews in 90 days. Review account; executive call within 5 working days; agree a joint recovery plan
+2. Ember Finance (Enterprise, £79,000): 6.9 Amber, renews in 64 days. Review account; executive call if renewal is within 120 days, otherwise check-in within 2 weeks
+3. Cobalt Charity (Mid-market, £29,000): 4.7 Red, renews in 351 days. Review account; check-in call within 5 working days; recovery plan
+4. Tidal Recruitment (Mid-market, £21,000): 5.6 Amber, renews in 68 days. Review account; check-in within 2 weeks
+5. Maple Retail (Mid-market, £15,000): 3.3 Red, renews in 248 days. Review account; check-in call within 5 working days; recovery plan
+
+*Changed since last week*
+Nothing new. (Or this is the first run, so there is no last week to compare with.)</pre>
+<p>The webhook URL is read from an environment variable, never stored in the code, so the script can be shared without sharing access to the channel.</p>
+
+<h2>What I'd connect next</h2>
+<ul>
+  <li><strong>Read from the CRM directly.</strong> Replace the CSV export with a call to the CRM's API (for example a Salesforce report or SOQL query), so nobody has to export anything.</li>
+  <li><strong>Run it on a schedule.</strong> A weekly job (cron, or a scheduled GitHub Action) every Monday at 8am.</li>
+  <li><strong>Write the score back.</strong> Push score, band and play to a field on the CRM or CS platform account record, so CSMs see it where they already work and can report on it.</li>
+  <li><strong>Calibrate with history.</strong> Once <code>score_history</code> has a few quarters in it, compare past scores with who actually renewed and churned, and tune the weights.</li>
+</ul>
+
+<h2>Downloads</h2>
+<p class="downloads">
+  <a href="code/health_score.sql" download>Download the SQL</a>
+  <a href="code/pipeline.py" download>Download the script (Python)</a>
+  <a href="data/accounts.csv" download>Download the dataset (CSV)</a>
+</p>
+<p>To run it: <code>python pipeline.py --self-check</code> to confirm it matches the Excel model, then <code>python pipeline.py</code> to score, save history and print the Slack message. Add <code>--post</code> with <code>SLACK_WEBHOOK_URL</code> set to post it. No extra packages needed.</p>
+
+<footer>
+<p>Fictional accounts and figures, for illustration only.</p>
+<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a> · <a href="../../retention-and-churn/health-score-model/">The original Excel model</a></p>
+</footer>
+</main>
+</body>
+</html>

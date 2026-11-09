@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chelsea Alagoa | Customer Success portfolio</title>
-<meta name="description" content="Customer Success portfolio by Chelsea Alagoa, organised by skill: business cases and ROI, and retention and churn. Each project uses fictional data and comes with its working model.">
+<title>Chelsea Alagoa | Technical Customer Success portfolio</title>
+<meta name="description" content="Technical Customer Success portfolio by Chelsea Alagoa, organised by skill: retention and churn, AI workflows, CS operations, and business cases and ROI. Each project uses fictional data and comes with its working model or code.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://blkren.github.io/">
-<meta property="og:title" content="Chelsea Alagoa | Customer Success portfolio">
+<meta property="og:title" content="Chelsea Alagoa | Technical Customer Success portfolio">
 <meta property="og:description" content="I find where the value chain breaks between what a customer buys and the outcome they wanted, put a number on it, and build the fix. Projects organised by skill.">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,7 @@
 
 <section class="hero shell" aria-labelledby="intro-title">
   <h1 id="intro-title">Chelsea Alagoa</h1>
-  <p class="role">Customer Success Manager</p>
+  <p class="role">Technical Customer Success Manager</p>
 
   <div class="chain" aria-hidden="true">
     <span class="chain__label chain__label--start">What a customer buys</span>
@@ -48,7 +48,8 @@
   </div>
 
   <div class="hero__body">
-    <p class="lede">I’m a Customer Success Manager who finds where the value chain breaks between what a customer buys and the outcome they wanted, puts a number on it, and builds the fix. Each project below shows how I do it, using fictional data.</p>
+    <p class="lede">I’m a Technical Customer Success Manager who finds where the value chain breaks between what a customer buys and the outcome they wanted, puts a number on it, and builds the fix. Each project below shows how I do it, using fictional data.</p>
+    <p class="skills"><span class="skills__label">Technical skills</span> SQL · APIs and webhooks · Salesforce · ClientSuccess · Claude and the Claude API · Excel modelling · HTML/CSS</p>
     <p class="actions">
       <a class="button button--primary" href="#projects">See the projects</a>
       <a class="button" href="https://linkedin.com/in/chelseaalagoa">Connect on LinkedIn</a>
@@ -61,6 +62,60 @@
     <h2 id="projects-title">Projects by skill</h2>
     <p>Organised by skill, not by employer or job application, so you can go straight to the skill you are hiring for. All organisations, people and figures in these projects are fictional. The methods are the ones I use at work.</p>
   </div>
+
+  <section class="area" aria-labelledby="area-retention">
+    <div class="area__head">
+      <h3 id="area-retention">Retention and churn</h3>
+      <p>Spotting churn risk and keeping customers</p>
+      <p class="area__count">2 projects</p>
+    </div>
+    <div class="area__list">
+      <article class="project">
+        <h4>AI Agent Customer Health Score</h4>
+        <p class="project__desc">Showed that 41% of ARR was at risk, mostly in one new enterprise account that a usage-only score would have missed.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>Health scoring for AI products</dd></dl>
+        <a class="project__link" href="retention-and-churn/ai-agent-health-score/">Read the case study<span class="visually-hidden">: AI Agent Customer Health Score</span></a>
+      </article>
+      <article class="project">
+        <h4>The SaaS version: Customer Health Score Model</h4>
+        <p class="project__desc">The simpler score I built first, for 80 SaaS accounts. It flagged £371k ARR (24%) as red or amber, with a ranked top 10 to act on. The AI Agent score above extends it.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>Prioritising churn risk by revenue</dd></dl>
+        <a class="project__link" href="retention-and-churn/health-score-model/">Read the case study<span class="visually-hidden">: The SaaS version: Customer Health Score Model</span></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" aria-labelledby="area-ai">
+    <div class="area__head">
+      <h3 id="area-ai">AI workflows</h3>
+      <p>Using AI to speed up Customer Success work</p>
+      <p class="area__count">1 project</p>
+    </div>
+    <div class="area__list">
+      <article class="project">
+        <h4>Pre-call Account Briefs with Claude</h4>
+        <p class="project__desc">A two-minute call brief for any account, drafted by Claude from health score data and checked in code so that every number traces back to the data.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>Claude API workflows with guardrails</dd></dl>
+        <a class="project__link" href="ai-workflows/account-brief-generator/">Read the case study<span class="visually-hidden">: Pre-call Account Briefs with Claude</span></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" aria-labelledby="area-ops">
+    <div class="area__head">
+      <h3 id="area-ops">CS operations</h3>
+      <p>Processes, reporting and tooling for CS teams</p>
+      <p class="area__count">1 project</p>
+    </div>
+    <div class="area__list">
+      <article class="project">
+        <h4>Health Score Pipeline: from Excel to SQL and Slack</h4>
+        <p class="project__desc">Moved the 80-account score into SQL with score history and week-on-week alerts, posted to Slack. Matches the Excel model on all 80 accounts.</p>
+        <dl class="project__skill"><dt>Skill shown</dt><dd>SQL, automation and integration</dd></dl>
+        <a class="project__link" href="cs-operations/health-score-pipeline/">Read the case study<span class="visually-hidden">: Health Score Pipeline</span></a>
+      </article>
+    </div>
+  </section>
 
   <section class="area" aria-labelledby="area-business">
     <div class="area__head">
@@ -78,33 +133,8 @@
     </div>
   </section>
 
-  <section class="area" aria-labelledby="area-retention">
-    <div class="area__head">
-      <h3 id="area-retention">Retention and churn</h3>
-      <p>Spotting churn risk and keeping customers</p>
-      <p class="area__count">2 projects</p>
-    </div>
-    <div class="area__list">
-      <article class="project">
-        <h4>AI Agent Customer Health Score</h4>
-        <p class="project__desc">Showed that 41% of ARR was at risk, mostly in one new enterprise account that a usage-only score would have missed.</p>
-        <dl class="project__skill"><dt>Skill shown</dt><dd>Health scoring</dd></dl>
-        <a class="project__link" href="retention-and-churn/ai-agent-health-score/">Read the case study<span class="visually-hidden">: AI Agent Customer Health Score</span></a>
-      </article>
-      <article class="project">
-        <h4>Customer Health Score Model</h4>
-        <p class="project__desc">Flagged £371k ARR (24%) as red or amber across 80 accounts, with a ranked top 10 to act on first.</p>
-        <dl class="project__skill"><dt>Skill shown</dt><dd>Prioritising churn risk by revenue</dd></dl>
-        <a class="project__link" href="retention-and-churn/health-score-model/">Read the case study<span class="visually-hidden">: Customer Health Score Model</span></a>
-      </article>
-    </div>
-  </section>
-
   <!--
-  Skill area template. Copy this above when a skill area has its first project.
-  Skill areas waiting for a project:
-    AI workflows (ai-workflows/): Using AI to speed up Customer Success work
-    CS operations (cs-operations/): Processes, reporting and tooling for CS teams
+  Skill area template. Copy this above when adding a new skill area.
 
   <section class="area" aria-labelledby="area-SLUG">
     <div class="area__head">
@@ -128,7 +158,7 @@
 
 <footer class="site-footer">
   <div class="shell site-footer__inner">
-    <p>Chelsea Alagoa, Customer Success Manager</p>
+    <p>Chelsea Alagoa, Technical Customer Success Manager</p>
     <ul>
       <li><a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a></li>
     </ul>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-call Account Briefs with Claude</title>
+<meta name="description" content="A case study in AI workflows: a pre-call account brief drafted by Claude from health score data, with a check that blocks any number not in the data. Fictional accounts.">
+<style>
+:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--red:#c0453a;--amber:#d9962b;--lgreen:#7fb069;--dgreen:#2f7a3e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}}
+:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
+h1,h2,h3,.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
+h1{font-size:2rem;margin:.2em 0 .4em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.15rem;color:var(--muted)}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 18px;margin:20px 0}
+.summary dl{margin:0}
+.summary div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.summary div:last-child{border-bottom:0}
+.summary dt{font:600 .85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
+.summary dd{margin:0}
+@media (max-width:520px){.summary div{grid-template-columns:1fr;gap:2px}}
+.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
+table{width:100%;border-collapse:collapse;font:.92rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.wrap{overflow-x:auto}
+ol li,ul li{margin:.35em 0}
+a{color:var(--accent)}
+code{font-size:.88em}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;font:.82rem/1.5 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
+/* Additions for this page: the example brief. */
+.brief{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;font-size:.95rem}
+.brief h3{margin-top:1.2em}
+.brief h3:first-child{margin-top:0}
+.brief .meta{font:.85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted);margin:0 0 .8em}
+.brief .ev{font:.8rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">AI workflows · Claude API</p>
+<h1>A pre-call brief that can't make up numbers</h1>
+<p class="lede">Before a customer call, a CSM needs two minutes of context, not twenty minutes in the CS platform. I built a workflow that has Claude write the brief from the health score data, then checks it so that a confident-sounding wrong number never reaches the call.</p>
+
+<div class="summary sans">
+<dl>
+  <div><dt>Skill shown</dt><dd>Using AI to speed up Customer Success work, with guardrails</dd></div>
+  <div><dt>The problem</dt><dd>Call prep means pulling together scores, red flags, metrics and the last play by hand. A language model can write that summary in seconds, but in a regulated customer base a brief with one invented figure is worse than no brief.</dd></div>
+  <div><dt>What I did</dt><dd>Built a script that sends one account's health score data to Claude, gets the brief back in a fixed structure, and checks it in code: every number must be in the data and every risk must cite the fields behind it. Data gaps are worked out by the code, not the model. If the check fails, nothing is saved.</dd></div>
+  <div><dt>Result</dt><dd>A brief for any of the eight accounts from the <a href="../../retention-and-churn/ai-agent-health-score/">AI agent health score</a> in one command, in the same five sections every time, with each risk traceable to its data.</dd></div>
+  <div><dt>Tools used</dt><dd>Claude API (structured outputs, refusal fallback), Python (written with Claude), CSV data from the AI agent health score</dd></div>
+</dl>
+</div>
+
+<p class="note">The accounts and figures are fictional, from the AI agent health score case study. The example brief below was written by hand, from Fenwick's data, to show the output format. A real run words it differently.</p>
+
+<h2>Why not just paste the account into a chatbot?</h2>
+<p>Because the risky part of an AI summary isn't the writing, it's the facts. A model asked to "summarise this account" may round a figure, merge two metrics, or fill a gap with something plausible. For an AI agent product sold to dental practices and gas engineers, the CSM is often the person explaining a safety incident. They need to know that every number in front of them is real.</p>
+<p>So the workflow splits the job. The model does what it's good at: deciding what matters and writing it clearly. Code does what has to be exact: choosing the facts, listing what's missing, and checking the result.</p>
+
+<h2>How it works</h2>
+<ol>
+  <li><strong>Gather the facts.</strong> The script joins the account's 24 metrics and red flags with its score, band, alert and weakest dimension, and adds the recommended play for that dimension. Blank metrics go on a data-gaps list.</li>
+  <li><strong>Ask Claude for a structured brief.</strong> The facts go to the Claude API with a short system prompt and a JSON schema, so the answer always comes back as a headline, situation, risks with evidence, three questions and a next step.</li>
+  <li><strong>Check it.</strong> Every number in the brief must appear in the facts (a rate of 0.8 may be written as 80%). Every risk must name the fields that support it, and each name must be a real field.</li>
+  <li><strong>Save or stop.</strong> A brief that passes is saved as a Markdown file with the data gaps added at the end. A brief that fails is not saved, and the script lists the problems.</li>
+</ol>
+
+<h2>The rules I gave the model</h2>
+<pre>Use only the facts given. Every number you write must appear in the facts.
+For each risk, put the exact names of the facts that support it in `evidence`.
+If a red flag is set, lead with it.
+Don't give clinical, legal or regulatory advice. Where one of those questions
+comes up, say who should answer it.
+Plain UK English, short sentences, no filler.</pre>
+<p>The prompt asks for good behaviour, but the check enforces it. I don't rely on a prompt alone for anything a customer could be harmed by.</p>
+
+<h2>The check, in code</h2>
+<pre>for n in sorted(numbers_in(prose)):
+    if not any(abs(n - a) &lt; 1e-6 for a in allowed):
+        problems.append(f"The number {n:g} isn't in the account data.")
+for risk in brief["risks"]:
+    for name in risk["evidence"]:
+        if name not in facts:
+            problems.append(f"Evidence {name!r} isn't a field in the account data.")</pre>
+<p>Its limit, stated plainly: it proves each number exists in the data, not that it's attached to the right metric. The evidence field is there so the CSM can check that in seconds.</p>
+
+<h2>Example: Fenwick Gas Services</h2>
+<div class="brief">
+  <h3>Pre-call brief: Fenwick Gas Services</h3>
+  <p class="meta">Heating and plumbing · Mid-market · Adoption · £60,000 ARR · renews 2027-05-01<br>Health score 49 (At risk). Alert: Red flag (critical safety incident; would be 73).</p>
+  <p><strong>A critical safety incident in the last 30 days has capped Fenwick at 49. Without it the score would be 73.</strong></p>
+  <p>Fenwick is a mid-market heating and plumbing customer in the Adoption stage, worth £60,000 a year and renewing on 2027-05-01. The score fell 21 points from 70. Outside AI quality the account looks solid: an 80% AI resolution rate, 80% coverage of eligible work, champion strength of 4 out of 5 and an NPS of 30.</p>
+  <h3>Risks</h3>
+  <ul>
+    <li>Critical errors are running at 4.5 per 1,000 tasks, and one of them was a safety or compliance incident. A repeat would be hard to recover from. <span class="ev">Evidence: Flag: critical safety or compliance incident (30 days); Q1 Critical errors per 1,000 tasks</span></li>
+    <li>90% of escalations are picked up within SLA, so some urgent hand-offs still wait too long. For a gas engineer, that is where an emergency gets missed. <span class="ev">Evidence: Q3 Escalations picked up within SLA</span></li>
+    <li>Staff may stop trusting the agent after the incident. The override rate is 10% today: watch it weekly. <span class="ev">Evidence: Q2 Human override / edit rate</span></li>
+  </ul>
+  <h3>Questions to ask</h3>
+  <ol>
+    <li>What happened on the call that caused the incident, and has your team changed how they use the agent since?</li>
+    <li>Who on your side needs to see the fix before they're comfortable again?</li>
+    <li>When the agent flags an emergency today, how quickly does a person pick it up?</li>
+  </ol>
+  <h3>Next step</h3>
+  <p>Run a quality escalation: review the error with Product, fix the top three error patterns, confirm the hand-off time, then walk the champion through the fix.</p>
+  <h3>Data gaps</h3>
+  <p>None. Every metric has data.</p>
+</div>
+<p>All 22 numbers in this brief trace back to Fenwick's data, so it passes the check. Run it on Brightwater Clinics instead and the data-gaps section lists the metrics with no data yet, such as the outcome KPI and bypass rate, so the CSM asks about them rather than guesses.</p>
+
+<h2>Design choices</h2>
+<ul>
+  <li><strong>Structured output, not free text.</strong> A fixed schema means every brief has the same sections in the same order, so CSMs know where to look, and the check can read each part.</li>
+  <li><strong>Code owns the gaps.</strong> Whether a metric is missing is a fact, not a judgement, so the model never decides it.</li>
+  <li><strong>Fail closed.</strong> No brief is better than a wrong one. A failure prints exactly what was wrong so the prompt or data can be fixed.</li>
+  <li><strong>A dry run first.</strong> <code>--dry-run</code> shows exactly what would be sent to the API, so anyone can review the data leaving the system before it does.</li>
+  <li><strong>Refusals handled.</strong> If a safety classifier declines a request, the API retries on a fallback model, and the script stops cleanly if that also declines.</li>
+</ul>
+
+<h2>What I'd do next in a real team</h2>
+<ul>
+  <li>Pull the facts from the CRM and the product's event data through their APIs instead of CSV exports.</li>
+  <li>Generate briefs automatically for every call booked in the next day, and post them to the CSM's channel.</li>
+  <li>Keep a small set of accounts with hand-checked briefs, and rerun them whenever the prompt or model changes, so quality is measured rather than assumed.</li>
+</ul>
+
+<h2>Downloads</h2>
+<p class="downloads">
+  <a href="code/brief.py" download>Download the script (Python)</a>
+  <a href="examples/fenwick-gas-services.md" download>Download the example brief</a>
+  <a href="data/accounts.csv" download>Download the account metrics (CSV)</a>
+  <a href="data/scores.csv" download>Download the scores (CSV)</a>
+</p>
+<p>To run it: <code>pip install -r requirements.txt</code>, then <code>python brief.py "Fenwick Gas Services" --dry-run</code> to see the facts and prompt. Drop <code>--dry-run</code> to call the API, which needs an Anthropic API key.</p>
+
+<footer>
+<p>Fictional organisations and figures, for illustration only. The example brief was written by hand to show the format.</p>
+<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a> · <a href="../../retention-and-churn/ai-agent-health-score/">The AI agent health score</a></p>
+</footer>
+</main>
+</body>
+</html>

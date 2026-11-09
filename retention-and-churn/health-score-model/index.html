@@ -46,7 +46,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 </head>
 <body>
 <main>
-<p class="eyebrow">Retention and churn · Health scoring</p>
+<p class="eyebrow">Retention and churn · Health scoring · The SaaS version</p>
 <h1>Which customers need you this week?</h1>
 <p class="lede">A customer health score built from first principles, for a fictional book of 80 accounts on an AI-enabled SaaS platform. It turns signals from the CRM and CS platform into a score, a priority list and a next action for every account.</p>
 
@@ -59,6 +59,8 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
   <div><dt>Tools used</dt><dd>Excel (weighted scoring, ranking formulas), Claude (analysis and build), HTML/CSS, GitHub Pages</dd></div>
 </dl>
 </div>
+
+<p class="note"><strong>Where this fits.</strong> This is the simpler health score I built first, for a standard SaaS product. The <a href="../ai-agent-health-score/">AI agent health score</a> builds on it for products where usage alone can’t tell you whether the AI is getting it right. I later moved this model out of Excel into <a href="../../cs-operations/health-score-pipeline/">SQL with weekly Slack alerts</a>.</p>
 
 <p class="note">All accounts, names and figures are fictional. The signals and bands are based on how I've run health scoring in practice. The weightings are my proposed starting point.</p>
 
@@ -126,7 +128,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 
 <footer>
 <p>Fictional accounts and figures, for illustration only.</p>
-<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a></p>
+<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a> · <a href="../ai-agent-health-score/">The AI agent version</a> · <a href="../../cs-operations/health-score-pipeline/">The SQL pipeline</a></p>
 </footer>
 </main>
 </body>
