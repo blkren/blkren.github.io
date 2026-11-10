@@ -1,3 +1,14 @@
 # Local output from the project scripts
 outputs/
 __pycache__/
+
+# Secrets: API keys, webhook URLs and credentials never go in the repository
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+credentials.json
