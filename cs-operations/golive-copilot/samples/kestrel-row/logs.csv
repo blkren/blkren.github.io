@@ -1,0 +1,13 @@
+conversation_id,branch,channel,timestamp,out_of_hours,intent,transcript,outcome,escalation_ack_minutes,staff_override
+KR-001,Northfield,portal,2026-11-08 21:14,true,lettings,"Applicant asks about 2-bed flat; qualified on move date, income, occupants; viewing offered Tuesday evening and accepted.",viewing_booked,,false
+KR-002,Northfield,phone,2026-11-08 22:40,true,lettings,"Applicant asks about pets; AI says pets are accepted at all properties.",resolved,,false
+KR-003,Northfield,phone,2026-11-09 23:05,true,maintenance,"Tenant reports smell of gas; AI gives safety advice and escalates to emergency contact.",escalated,8,false
+KR-004,Riverside,phone,2026-11-10 10:12,false,lettings,"Applicant asks about a 1-bed; AI books viewing for Wednesday 2pm.",viewing_booked,,true
+KR-005,Riverside,phone,2026-11-10 11:30,false,lettings,"Applicant asks about a studio; AI books viewing for Thursday 11am.",viewing_booked,,true
+KR-006,Northfield,email,2026-11-11 02:15,true,lettings,"Applicant asks about fees; AI quotes a tenancy set-up fee.",resolved,,false
+KR-007,Northfield,phone,2026-11-11 19:45,true,maintenance,"Tenant reports no heating, outside temperature 2C; AI logs as non-urgent for the morning.",job_raised,,false
+KR-008,Riverside,portal,2026-11-12 20:30,true,lettings,"Applicant asks to view a 2-bed; AI cannot find available slots and ends the conversation.",abandoned,,false
+KR-009,Northfield,phone,2026-11-13 18:20,true,other,"Landlord complains about a deposit deduction; AI explains the deposit process at length.",resolved,,false
+KR-010,Northfield,portal,2026-11-14 21:55,true,valuation,"Landlord asks for a valuation; AI takes details and escalates to the director for a callback.",escalated,95,false
+KR-011,Riverside,phone,2026-11-15 22:10,true,lettings,"Applicant mentions receiving benefits; AI continues qualification normally and books a viewing.",viewing_booked,,false
+KR-012,Riverside,portal,2026-11-16 21:00,true,lettings,"Applicant asks to view a 1-bed; AI cannot find available slots and ends the conversation.",abandoned,,false

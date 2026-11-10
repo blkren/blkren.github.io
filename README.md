@@ -12,7 +12,7 @@ All organisations, people and figures in these projects are fictional. The metho
 | --- | --- | --- |
 | [retention-and-churn/](retention-and-churn/) | Spotting churn risk and keeping customers | [AI Agent Customer Health Score](retention-and-churn/ai-agent-health-score/), and the SaaS version it extends: [Customer Health Score Model](retention-and-churn/health-score-model/) |
 | [ai-workflows/](ai-workflows/) | Using AI to speed up Customer Success work | [Pre-call Account Briefs with Claude](ai-workflows/account-brief-generator/) |
-| [cs-operations/](cs-operations/) | Processes, reporting and tooling for CS teams | [Health Score Pipeline: from Excel to SQL and Slack](cs-operations/health-score-pipeline/) |
+| [cs-operations/](cs-operations/) | Processes, reporting and tooling for CS teams | [AI Agent Go-live Kit](cs-operations/golive-copilot/), [Health Score Pipeline: from Excel to SQL and Slack](cs-operations/health-score-pipeline/) |
 | [business-cases-and-roi/](business-cases-and-roi/) | Building business cases and showing return on investment | [Compliance Renewal Value Model](business-cases-and-roi/compliance-value-model/) |
 
 The home page only shows a skill area once it has a project, in the order above.

@@ -18,7 +18,6 @@ import re
 import sys
 from pathlib import Path
 
-import anthropic
 
 HERE = Path(__file__).resolve().parent
 DATA = HERE.parent / "data"
@@ -210,6 +209,7 @@ def run(client, account, dry_run):
 
 
 def main():
+    sys.stdout.reconfigure(encoding="utf-8")  # so £ prints correctly in the Windows terminal
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("account", nargs="?", help="account name, as in data/accounts.csv")
     parser.add_argument("--all", action="store_true", help="write a brief for every account")
@@ -219,7 +219,11 @@ def main():
         parser.error("name an account or use --all")
 
     accounts = list(read_csv("accounts.csv")) if args.all else [args.account]
-    client = None if args.dry_run else anthropic.Anthropic()
+    client = None
+    if not args.dry_run:
+        import anthropic  # only needed for a real API call, so --dry-run works without the package
+
+        client = anthropic.Anthropic()
     results = [run(client, account, args.dry_run) for account in accounts]
     sys.exit(0 if all(results) else 1)
 

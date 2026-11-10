@@ -161,6 +161,7 @@ def post_to_slack(text):
 
 
 def main():
+    sys.stdout.reconfigure(encoding="utf-8")  # so £ prints correctly in the Windows terminal
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--accounts", type=Path, default=DEFAULT_ACCOUNTS, help="CRM export as CSV")
     parser.add_argument("--db", type=Path, default=DEFAULT_DB, help="SQLite file that keeps score history")
