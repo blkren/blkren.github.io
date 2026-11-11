@@ -44,7 +44,13 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 .flow li strong{display:block}
 .flow li span{color:var(--muted);font-size:.82rem}
 .flow li.loop{border-color:var(--accent);background:var(--accent-soft)}
-.flow-note{font:.85rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted);margin-top:4px}
+.flow li.loop span{color:var(--accent);font-weight:600}
+.phase-label{font:600 .75rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+.phase-label + .flow{margin-top:0}
+.cycle{border:2px dashed var(--accent);border-radius:12px;padding:12px;margin:18px 0 8px}
+.cycle .phase-label{color:var(--accent);margin-top:0}
+.flow--cycle{counter-reset:step 3;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-bottom:0}
+.cycle-back{font:600 .85rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--accent);margin:10px 0 0}
 .pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
 .stat .big{font-size:1.8rem;font-weight:700;line-height:1.1}
@@ -79,17 +85,23 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 <p>So the method treats a go-live as a change programme with engineering controls, not a set-up task.</p>
 
 <h2>The method at a glance</h2>
+<p class="phase-label">Before go-live: once per customer</p>
 <ol class="flow">
   <li><strong>People discovery</strong><span>Voice interviews with staff</span></li>
   <li><strong>Workflow map</strong><span>Today, after, human/AI split</span></li>
   <li><strong>Configure</strong><span>With enterprise readiness checks</span></li>
-  <li><strong>Test and gate</strong><span>100% safety, 90% overall</span></li>
-  <li><strong>Phased rollout</strong><span>Each stage earns the next</span></li>
-  <li><strong>Hypercare</strong><span>Daily, then weekly</span></li>
-  <li><strong>Log review</strong><span>Two rates, five buckets</span></li>
-  <li class="loop"><strong>Templates and product fixes</strong><span>Every fix becomes a test</span></li>
 </ol>
-<p class="flow-note">Step 8 feeds back into step 4: every fix adds a scenario to the test suite before it's closed.</p>
+<div class="cycle" role="group" aria-label="Steps 4 to 8 repeat as a loop">
+  <p class="phase-label">↻ The loop: repeats for every stage and every change</p>
+  <ol class="flow flow--cycle" start="4">
+    <li><strong>Test and gate</strong><span>100% safety, 90% overall</span></li>
+    <li><strong>Phased rollout</strong><span>Each stage earns the next</span></li>
+    <li><strong>Hypercare</strong><span>Daily, then weekly</span></li>
+    <li><strong>Log review</strong><span>Two rates, five buckets</span></li>
+    <li class="loop"><strong>Templates and product fixes</strong><span>↩ Back to step 4</span></li>
+  </ol>
+  <p class="cycle-back">↩ Every fix becomes a new test before it's closed, so the gate gets stricter with each turn of the loop.</p>
+</div>
 <p>Everything sits in five buckets, so a risk before launch and an issue after launch can be compared across customers: <strong>Coverage</strong> (the AI sees the requests), <strong>Quality</strong> (it handles them correctly), <strong>Adoption</strong> (staff rely on it), <strong>Outcomes</strong> (it changes business results) and <strong>Evidence</strong> (the owner can see the value).</p>
 <p>The core is sector-neutral. A sector pack adds each sector's workflows, urgent triggers, always-human topics, compliance flags and test scenarios. For example: a lettings agent must never apply a blanket ban; a clinic's agent never gives clinical advice; and for a heating firm, a reported gas smell is always an emergency.</p>
 
