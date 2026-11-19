@@ -20,9 +20,9 @@
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261120a">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<script src="../../assets/js/site.js?v=20261119f" defer></script>
+<script src="../../assets/js/site.js?v=20261120a" defer></script>
 </head>
 <body id="top">
 <div class="progress" aria-hidden="true"><i data-progress></i></div>
@@ -30,12 +30,12 @@
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg><span class="theme-toggle__text">Dark mode</span></button>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../../#case-studies">Case studies</a></li>
         <li><a href="../../#how">How I work</a></li>
         <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
-        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
       </ul>
     </nav>
   </div>
@@ -68,19 +68,20 @@
     <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">£371k</p><p class="figure__t">ARR flagged red or amber, 24% of the book</p></li><li class="figure"><p class="figure__n">8</p><p class="figure__t">of those accounts renew within 90 days</p></li><li class="figure"><p class="figure__n">10</p><p class="figure__t">accounts capped by an overdue payment or repeated escalations</p></li><li class="figure"><p class="figure__n">29</p><p class="figure__t">expansion candidates worth £576k ARR</p></li></ul>
   </div>
   <div class="shell">
+    <details class="toc"><summary>On this page</summary><ol><li><a href="#starting-from-first-principles">Starting from first principles</a></li><li><a href="#bands-caps-and-plays">Bands, caps and plays</a></li><li><a href="#what-the-model-shows">What the model shows</a></li><li><a href="#what-i-d-do-next-with-real-data">What I’d do next with real data</a></li><li><a href="#explore-the-model">Explore the model</a></li></ol></details>
     <div class="prose">
 <p class="lede">A customer health score built from first principles, for a fictional book of 80 accounts on an AI-enabled SaaS platform. It turns signals from the CRM and CS platform into a score, a priority list and a next action for every account.</p>
 <p class="note"><strong>Where this fits.</strong> This is the simpler health score I built first, for a standard SaaS product. The <a href="../ai-agent-health-score/">AI agent health score</a> builds on it for products where usage alone can’t tell you whether the AI is getting it right. I later moved this model out of Excel into <a href="../../cs-operations/health-score-pipeline/">SQL with weekly Slack alerts</a>.</p>
 
-<p class="note">All accounts, names and figures are fictional. The signals and bands are based on how I've run health scoring in practice. The weightings are my proposed starting point.</p>
+<p class="note">All accounts, names and figures are fictional. The signals and bands are based on how I’ve run health scoring in practice. The weightings are my proposed starting point.</p>
 
-<h2>Starting from first principles</h2>
+<h2 id="starting-from-first-principles">Starting from first principles</h2>
 <p>A health score should answer one question: <strong>how likely is this customer to renew and grow?</strong> So I only kept signals that explain renewal, and grouped them by the reason a customer stays or leaves.</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Dimension, Weight, Signals, Why it matters">
 <table>
   <thead><tr><th>Dimension</th><th class="num">Weight</th><th>Signals</th><th>Why it matters</th></tr></thead>
   <tbody>
-    <tr><td>Adoption</td><td class="num">35%</td><td>Workflows live vs contracted, last admin login, AI features in use</td><td>Customers renew what they use. AI adoption shows they're getting the newest value.</td></tr>
+    <tr><td>Adoption</td><td class="num">35%</td><td>Workflows live vs contracted, last admin login, AI features in use</td><td>Customers renew what they use. AI adoption shows they’re getting the newest value.</td></tr>
     <tr><td>Relationship</td><td class="num">35%</td><td>Customer Pulse score, days since they engaged, days since we contacted them, contacts mapped (sponsor, champion, 2+ admins)</td><td>Sentiment and coverage. One contact is a single point of failure.</td></tr>
     <tr><td>Support</td><td class="num">15%</td><td>Open tickets, escalated tickets</td><td>Unresolved friction erodes trust, and escalations count most.</td></tr>
     <tr><td>Commercial</td><td class="num">15%</td><td>Overdue payment flag</td><td>Often the earliest sign of budget pressure.</td></tr>
@@ -89,15 +90,15 @@
 </div>
 <p>Each signal is scored 0 to 10 against clear thresholds, then combined into a score out of 10.</p>
 
-<h2>Bands, caps and plays</h2>
+<h2 id="bands-caps-and-plays">Bands, caps and plays</h2>
 <p><span class="band band--risk">Red 1–4</span> <span class="band band--watch">Amber 5–6</span> <span class="band band--lgreen">Light green 7–8</span> <span class="band band--healthy">Dark green 9–10</span></p>
 <ul>
-  <li><strong>Hard caps:</strong> an overdue payment or two or more escalations caps the score at 6 (amber), however good everything else looks. A happy customer with an unpaid invoice isn't healthy.</li>
-  <li><strong>Plays depend on band and segment.</strong> Every red or amber account gets an account review first. Then it's an executive call for enterprise accounts, a check-in for mid-market, and a check-in plus targeted self-help for SMB. Dark green accounts move to expansion and advocacy.</li>
+  <li><strong>Hard caps:</strong> an overdue payment or two or more escalations caps the score at 6 (amber), however good everything else looks. A happy customer with an unpaid invoice isn’t healthy.</li>
+  <li><strong>Plays depend on band and segment.</strong> Every red or amber account gets an account review first. Then it’s an executive call for enterprise accounts, a check-in for mid-market, and a check-in plus targeted self-help for SMB. Dark green accounts move to expansion and advocacy.</li>
   <li><strong>Priority</strong> ranks red and amber accounts by ARR × (10 − score) ÷ 10, weighted up when renewal is within 90 or 180 days. The first call goes to where the most revenue is at risk soonest.</li>
 </ul>
 
-<h2>What the model shows</h2>
+<h2 id="what-the-model-shows">What the model shows</h2>
 <p class="chart-title">ARR by health band (£1.54m across 80 accounts)</p>
 <div class="bars" role="img" aria-label="ARR by band. Red: £171k across 10 accounts. Amber: £200k across 16 accounts. Light green: £668k across 28 accounts. Dark green: £500k across 26 accounts.">
   <div class="bar-row"><span>Red</span><span class="bar-track"><span class="bar" style="width:25.6%;background:var(--risk)"></span><span class="bar-value">£171k · 10 accounts</span></span></div>
@@ -109,7 +110,7 @@
 <ul>
   <li><strong>£371k ARR (24%)</strong> is red or amber, and 8 of those accounts renew within 90 days.</li>
   <li><strong>10 accounts</strong> are capped by an overdue payment or repeated escalations.</li>
-  <li><strong>29 expansion candidates</strong> (£576k ARR) score 8 or more and are either using nearly everything they've bought or showing a growth signal, such as new funding or hiring.</li>
+  <li><strong>29 expansion candidates</strong> (£576k ARR) score 8 or more and are either using nearly everything they’ve bought or showing a growth signal, such as new funding or hiring.</li>
 </ul>
 
 <p class="chart-title">First five accounts to act on</p>
@@ -126,10 +127,10 @@
 </table>
 </div>
 
-<h2>What I'd do next with real data</h2>
-<p>The weights are a starting hypothesis, not the truth. With a real book, I'd score last year's accounts and check the scores against who actually churned or expanded. I'd then adjust the weights until red reliably means risk and dark green reliably means growth. I'd also review the thresholds each quarter with the team, so the score stays something CSMs trust and act on.</p>
+<h2 id="what-i-d-do-next-with-real-data">What I’d do next with real data</h2>
+<p>The weights are a starting hypothesis, not the truth. With a real book, I’d score last year’s accounts and check the scores against who actually churned or expanded. I’d then adjust the weights until red reliably means risk and dark green reliably means growth. I’d also review the thresholds each quarter with the team, so the score stays something CSMs trust and act on.</p>
 
-<h2>Explore the model</h2>
+<h2 id="explore-the-model">Explore the model</h2>
 <p class="downloads">
   <a href="model/health_score_model.xlsx" download>Download the Excel model</a>
   <a href="data/accounts.csv" download>Download the dataset (CSV)</a>
@@ -142,7 +143,7 @@
   <div class="shell">
     <div class="cta__text">
       <h2 id="cta-title">Do you know which customers need you this week?</h2>
-      <p>I'd be glad to talk through how your team could prioritise by revenue at risk.</p>
+      <p>I’d be glad to talk through how your team could prioritise by revenue at risk.</p>
     </div>
     <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
   </div>

@@ -20,9 +20,9 @@
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261120a">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<script src="../../assets/js/site.js?v=20261119f" defer></script>
+<script src="../../assets/js/site.js?v=20261120a" defer></script>
 </head>
 <body id="top">
 <div class="progress" aria-hidden="true"><i data-progress></i></div>
@@ -30,12 +30,12 @@
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg><span class="theme-toggle__text">Dark mode</span></button>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../../#case-studies">Case studies</a></li>
         <li><a href="../../#how">How I work</a></li>
         <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
-        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
       </ul>
     </nav>
   </div>
@@ -51,7 +51,7 @@
     <section class="broke" aria-labelledby="broke-title">
       <h2 id="broke-title">Where the chain broke</h2>
       <ol class="stages" aria-label="Value chain stages, with the break marked"><li>Buy</li><li>Onboard</li><li>Adopt</li><li>Realise value</li><li class="is-break">Renew<span class="visually-hidden"> (where it broke)</span></li></ol>
-      <p>Renewal. A score that goes stale between refreshes, with no memory of last week, can't tell anyone when an account slips. The risk shows up too late to act on.</p>
+      <p>Renewal. A score that goes stale between refreshes, with no memory of last week, can’t tell anyone when an account slips. The risk shows up too late to act on.</p>
     </section>
   </div>
   <div class="shell glance">
@@ -68,28 +68,29 @@
     <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">80 of 80</p><p class="figure__t">accounts match the Excel model exactly</p></li><li class="figure"><p class="figure__n">£370,750</p><p class="figure__t">ARR at risk, unchanged after the move</p></li><li class="figure"><p class="figure__n">1</p><p class="figure__t">command for the weekly refresh</p></li><li class="figure"><p class="figure__n">1 point</p><p class="figure__t">drop in score triggers an alert, whatever the band</p></li></ul>
   </div>
   <div class="shell">
+    <details class="toc"><summary>On this page</summary><ol><li><a href="#why-move-it-out-of-excel">Why move it out of Excel</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#the-score-in-sql">The score in SQL</a></li><li><a href="#proving-it-matches-the-excel-model">Proving it matches the Excel model</a></li><li><a href="#what-changes-each-week">What changes each week</a></li><li><a href="#the-slack-summary">The Slack summary</a></li><li><a href="#what-i-d-connect-next">What I’d connect next</a></li><li><a href="#downloads">Downloads</a></li></ol></details>
     <div class="prose">
-<p class="lede">A health score only helps if someone sees it change in time. I moved my <a href="../../retention-and-churn/health-score-model/">80-account health score</a> out of Excel and into SQL, so it can run every week on a fresh CRM export, remember last week's scores, and tell the team in Slack what changed.</p>
+<p class="lede">A health score only helps if someone sees it change in time. I moved my <a href="../../retention-and-churn/health-score-model/">80-account health score</a> out of Excel and into SQL, so it can run every week on a fresh CRM export, remember last week’s scores, and tell the team in Slack what changed.</p>
 <p class="note">All accounts and figures are fictional, from the <a href="../../retention-and-churn/health-score-model/">Customer Health Score Model</a>. The score rules are unchanged; only where they run has changed.</p>
 
-<h2>Why move it out of Excel</h2>
-<p>Excel is the right place to design a score: anyone can see the weights and change a threshold. It's the wrong place to run one every week. Three things were missing:</p>
+<h2 id="why-move-it-out-of-excel">Why move it out of Excel</h2>
+<p>Excel is the right place to design a score: anyone can see the weights and change a threshold. It’s the wrong place to run one every week. Three things were missing:</p>
 <ul>
   <li><strong>Freshness.</strong> The score is only as current as the last time someone pasted in an export.</li>
-  <li><strong>Memory.</strong> The sheet shows this week. It can't say that an account was green last week and is amber now, and that change is the most useful signal a CSM can get.</li>
+  <li><strong>Memory.</strong> The sheet shows this week. It can’t say that an account was green last week and is amber now, and that change is the most useful signal a CSM can get.</li>
   <li><strong>Reach.</strong> Results sit in a file. The team works in Slack and the CRM.</li>
 </ul>
 
-<h2>How it works</h2>
+<h2 id="how-it-works">How it works</h2>
 <ol>
   <li><strong>Load.</strong> The CRM export (CSV) goes into a SQLite table, with each column typed so numbers compare as numbers.</li>
   <li><strong>Score.</strong> A SQL view, <code>scored_accounts</code>, applies the same rules as the Excel Inputs sheet: signal thresholds, dimension weights, hard caps, bands, priority and plays.</li>
-  <li><strong>Remember.</strong> Each run saves every account's score to a <code>score_history</code> table. Rerunning the same day replaces that day's scores, so a mistake is easy to redo.</li>
+  <li><strong>Remember.</strong> Each run saves every account’s score to a <code>score_history</code> table. Rerunning the same day replaces that day’s scores, so a mistake is easy to redo.</li>
   <li><strong>Compare.</strong> A second view, <code>score_changes</code>, compares this run with the last one and raises an alert for each account that needs attention.</li>
-  <li><strong>Tell the team.</strong> The script builds a short summary and posts it to a Slack channel. Without <code>--post</code> it only prints it, so it's safe to test.</li>
+  <li><strong>Tell the team.</strong> The script builds a short summary and posts it to a Slack channel. Without <code>--post</code> it only prints it, so it’s safe to test.</li>
 </ol>
 
-<h2>The score in SQL</h2>
+<h2 id="the-score-in-sql">The score in SQL</h2>
 <p>Each signal is a <code>CASE</code> expression against the thresholds from the Excel model. This is the escalation signal, and the hard cap that stops a happy-looking account with an unpaid invoice from showing as healthy:</p>
 <pre tabindex="0">CASE WHEN escalated_tickets = 0 THEN 10
      WHEN escalated_tickets &lt;= 1 THEN 5
@@ -103,8 +104,8 @@
 ROUND(CASE WHEN capped AND raw_score &gt; 6 THEN 6 ELSE raw_score END + 1e-9, 1) AS health_score</pre>
 <p>The tiny <code>1e-9</code> is there for one account. Its raw score is exactly 3.25, which Excel rounds to 3.3. Floating-point maths can land on 3.2499999…, which would round to 3.2 and quietly break the match. Small details like this are why I check the results against the original, account by account.</p>
 
-<h2>Proving it matches the Excel model</h2>
-<p>Moving a score to a new system is only safe if the numbers don't move with it. The script has a <code>--self-check</code> mode that scores the sample data and compares it with the Excel model's published results:</p>
+<h2 id="proving-it-matches-the-excel-model">Proving it matches the Excel model</h2>
+<p>Moving a score to a new system is only safe if the numbers don’t move with it. The script has a <code>--self-check</code> mode that scores the sample data and compares it with the Excel model’s published results:</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Result, Excel model">
 <table>
   <thead><tr><th>Result</th><th>Excel model</th></tr></thead>
@@ -117,18 +118,18 @@ ROUND(CASE WHEN capped AND raw_score &gt; 6 THEN 6 ELSE raw_score END + 1e-9, 1)
   </tbody>
 </table>
 </div>
-<p>I also checked all 80 accounts one by one, comparing score, band, priority and expansion flag with the workbook. The first pass found one difference: an expansion flag that came from Windows line endings in the CSV, not the logic. That's exactly the kind of bug a migration introduces and a spot check misses.</p>
+<p>I also checked all 80 accounts one by one, comparing score, band, priority and expansion flag with the workbook. The first pass found one difference: an expansion flag that came from Windows line endings in the CSV, not the logic. That’s exactly the kind of bug a migration introduces and a spot check misses.</p>
 
-<h2>What changes each week</h2>
+<h2 id="what-changes-each-week">What changes each week</h2>
 <p>An account appears in the "changed" list when any of these is true since the last run:</p>
 <ul>
   <li>It moved into red or amber.</li>
   <li>Its score dropped by 1 point or more, whatever its band.</li>
   <li>It became capped, because of a newly overdue payment or a second escalation.</li>
 </ul>
-<p>The second rule matters most. A drop from 8.4 to 7.2 stays light green, so a band-only view shows nothing, but it's often the earliest warning there is.</p>
+<p>The second rule matters most. A drop from 8.4 to 7.2 stays light green, so a band-only view shows nothing, but it’s often the earliest warning there is.</p>
 
-<h2>The Slack summary</h2>
+<h2 id="the-slack-summary">The Slack summary</h2>
 <p>This is the message from a first run on the sample data. On later runs the last section lists the accounts that changed.</p>
 <pre class="message" tabindex="0">*Customer health, week of 2026-11-02*
 £370,750 ARR (24%) is red or amber. 8 of those accounts renew within 90 days.
@@ -144,15 +145,15 @@ ROUND(CASE WHEN capped AND raw_score &gt; 6 THEN 6 ELSE raw_score END + 1e-9, 1)
 Nothing new. (Or this is the first run, so there is no last week to compare with.)</pre>
 <p>The webhook URL is read from an environment variable, never stored in the code, so the script can be shared without sharing access to the channel.</p>
 
-<h2>What I'd connect next</h2>
+<h2 id="what-i-d-connect-next">What I’d connect next</h2>
 <ul>
-  <li><strong>Read from the CRM directly.</strong> Replace the CSV export with a call to the CRM's API (for example a Salesforce report or SOQL query), so nobody has to export anything.</li>
+  <li><strong>Read from the CRM directly.</strong> Replace the CSV export with a call to the CRM’s API (for example a Salesforce report or SOQL query), so nobody has to export anything.</li>
   <li><strong>Run it on a schedule.</strong> A weekly job (cron, or a scheduled GitHub Action) every Monday at 8am.</li>
   <li><strong>Write the score back.</strong> Push score, band and play to a field on the CRM or CS platform account record, so CSMs see it where they already work and can report on it.</li>
   <li><strong>Calibrate with history.</strong> Once <code>score_history</code> has a few quarters in it, compare past scores with who actually renewed and churned, and tune the weights.</li>
 </ul>
 
-<h2>Downloads</h2>
+<h2 id="downloads">Downloads</h2>
 <p class="downloads">
   <a href="code/health_score.sql" download>Download the SQL</a>
   <a href="code/pipeline.py" download>Download the script (Python)</a>
@@ -166,7 +167,7 @@ Nothing new. (Or this is the first run, so there is no last week to compare with
   <div class="shell">
     <div class="cta__text">
       <h2 id="cta-title">Is your health score telling the team in time?</h2>
-      <p>I'd be glad to talk through how to turn a manual model into a weekly, automated signal.</p>
+      <p>I’d be glad to talk through how to turn a manual model into a weekly, automated signal.</p>
     </div>
     <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
   </div>

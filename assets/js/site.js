@@ -144,7 +144,8 @@
       if (topTick) return;
       topTick = true;
       requestAnimationFrame(function () {
-        toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.8);
+        var screens = window.innerWidth < 640 ? 2 : 0.8; /* phones: wait two screens so it covers less */
+        toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * screens);
         topTick = false;
       });
     }, { passive: true });

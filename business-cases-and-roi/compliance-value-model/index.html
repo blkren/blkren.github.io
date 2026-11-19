@@ -20,9 +20,9 @@
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261120a">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<script src="../../assets/js/site.js?v=20261119f" defer></script>
+<script src="../../assets/js/site.js?v=20261120a" defer></script>
 </head>
 <body id="top">
 <div class="progress" aria-hidden="true"><i data-progress></i></div>
@@ -30,12 +30,12 @@
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg><span class="theme-toggle__text">Dark mode</span></button>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../../#case-studies">Case studies</a></li>
         <li><a href="../../#how">How I work</a></li>
         <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
-        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
       </ul>
     </nav>
   </div>
@@ -68,12 +68,13 @@
     <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">£49,100</p><p class="figure__t">three-year cost of keeping the support</p></li><li class="figure"><p class="figure__n">£72,900</p><p class="figure__t">three-year cost of cancelling, risk included</p></li><li class="figure"><p class="figure__n">7 months</p><p class="figure__t">to pay back the Year 1 fees, expected case</p></li><li class="figure"><p class="figure__n">£20,900</p><p class="figure__t">a year of risk exposure from open actions</p></li></ul>
   </div>
   <div class="shell">
+    <details class="toc"><summary>On this page</summary><ol><li><a href="#the-situation">The situation</a></li><li><a href="#how-i-built-the-case">How I built the case</a></li><li><a href="#what-the-model-shows">What the model shows</a></li><li><a href="#why-i-show-the-conservative-case">Why I show the conservative case</a></li><li><a href="#what-happens-after-the-renewal">What happens after the renewal</a></li><li><a href="#downloads">Downloads</a></li></ol></details>
     <div class="prose">
 <p class="lede">A risk-based renewal model for a customer who wants to cancel. I built it to show how I turn an audit history into a business case a finance lead can sign off.</p>
-<p class="note">The organisation, actions and figures here are fictional. The approach is based on renewal conversations I've had in compliance services, where I've kept clients by setting the cost of non-compliance against the cost of support.</p>
+<p class="note">The organisation, actions and figures here are fictional. The approach is based on renewal conversations I’ve had in compliance services, where I’ve kept clients by setting the cost of non-compliance against the cost of support.</p>
 
-<h2>The situation</h2>
-<p>Northfield Learning Trust runs six schools. A new business manager is reviewing every budget line and plans to cancel the trust's fire safety, health and safety, and data protection support, worth £11,000 a year. On paper it looks like an easy saving.</p>
+<h2 id="the-situation">The situation</h2>
+<p>Northfield Learning Trust runs six schools. A new business manager is reviewing every budget line and plans to cancel the trust’s fire safety, health and safety, and data protection support, worth £11,000 a year. On paper it looks like an easy saving.</p>
 <p>The audit history tells a different story. Staff changes meant ownership of several actions was never handed over, and some high-risk items have been open for months.</p>
 
 <div class="stats">
@@ -83,16 +84,16 @@
   <div class="stat"><b>£11k</b><span>annual cost of support</span></div>
 </div>
 
-<h2>How I built the case</h2>
+<h2 id="how-i-built-the-case">How I built the case</h2>
 <ol>
-  <li><strong>Discovery.</strong> Start with the customer's own data: the audit history, which actions are open, how long, and who owns them.</li>
+  <li><strong>Discovery.</strong> Start with the customer’s own data: the audit history, which actions are open, how long, and who owns them.</li>
   <li><strong>Baseline.</strong> Put an expected cost on each open action: the probability it leads to enforcement within a year, multiplied by the likely impact (fine, legal costs and remediation). Fire door breaches matter here, because fire safety offences can attract unlimited fines.</li>
-  <li><strong>Value drivers.</strong> Risk removed by closing actions with specialist support, and the business manager's time saved by not chasing them alone.</li>
+  <li><strong>Value drivers.</strong> Risk removed by closing actions with specialist support, and the business manager’s time saved by not chasing them alone.</li>
   <li><strong>Options and total cost.</strong> Compare three options over three years: keep the support, bring compliance in-house, or cancel with no replacement.</li>
   <li><strong>Scenarios.</strong> Run conservative, expected and high cases, and show every assumption so the customer can challenge it.</li>
 </ol>
 
-<h2>What the model shows</h2>
+<h2 id="what-the-model-shows">What the model shows</h2>
 <p>In the expected scenario, the trust is carrying about <strong>£20,900 a year</strong> of risk exposure from its open actions, almost twice what the support costs. Keeping the service is the cheapest option over three years once risk and time are counted.</p>
 
 <figure>
@@ -102,7 +103,7 @@
   <div class="bar-row"><span class="bar-label">Bring compliance in-house</span><span class="bar-track"><span class="bar" style="width:100%;background:var(--muted)"></span><span class="bar-value">£103,300</span></span></div>
   <div class="bar-row"><span class="bar-label">Cancel, no replacement</span><span class="bar-track"><span class="bar" style="width:70.5%;background:var(--muted)"></span><span class="bar-value">£72,900</span></span></div>
 </div>
-<figcaption>Includes service fees, staff costs, the business manager's time and expected risk exposure. Risk exposure is an expected value, not a cash cost.</figcaption>
+<figcaption>Includes service fees, staff costs, the business manager’s time and expected risk exposure. Risk exposure is an expected value, not a cash cost.</figcaption>
 </figure>
 
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Scenario, Risk exposure a year, Exposure per £1 of fees, Year 1 ROI of keeping support">
@@ -117,13 +118,13 @@
 </div>
 <p>In the expected case, the Year 1 fees pay back in about <strong>seven months</strong>.</p>
 
-<h2>Why I show the conservative case</h2>
-<p>In the conservative scenario, the financial return on its own is negative. I'd still show it. A value case that only works with optimistic numbers won't survive a finance review, and being open about it builds trust. It also moves the conversation to what the spreadsheet can't price: prosecution risk, the safety of pupils and staff, and the trust's reputation with its board and parents.</p>
+<h2 id="why-i-show-the-conservative-case">Why I show the conservative case</h2>
+<p>In the conservative scenario, the financial return on its own is negative. I’d still show it. A value case that only works with optimistic numbers won’t survive a finance review, and being open about it builds trust. It also moves the conversation to what the spreadsheet can’t price: prosecution risk, the safety of pupils and staff, and the trust’s reputation with its board and parents.</p>
 
-<h2>What happens after the renewal</h2>
-<p>The same model becomes the scorecard. I'd agree targets with the customer, such as every high-risk action owned within 30 days and closed within 90. Then I'd track progress in a shared dashboard and review it each term. At renewal, the conversation is about results already delivered, not a promise.</p>
+<h2 id="what-happens-after-the-renewal">What happens after the renewal</h2>
+<p>The same model becomes the scorecard. I’d agree targets with the customer, such as every high-risk action owned within 30 days and closed within 90. Then I’d track progress in a shared dashboard and review it each term. At renewal, the conversation is about results already delivered, not a promise.</p>
 
-<h2>Downloads</h2>
+<h2 id="downloads">Downloads</h2>
 <p class="downloads">
   <a href="model/compliance_value_model.xlsx" download>Download the Excel model</a>
   <a href="data/outstanding_actions.csv" download>Download the dataset (CSV)</a>
@@ -135,8 +136,8 @@
 <section class="cta" aria-labelledby="cta-title">
   <div class="shell">
     <div class="cta__text">
-      <h2 id="cta-title">Facing a renewal where the value isn't visible?</h2>
-      <p>I'd be glad to talk through how to build a business case a finance lead can sign off.</p>
+      <h2 id="cta-title">Facing a renewal where the value isn’t visible?</h2>
+      <p>I’d be glad to talk through how to build a business case a finance lead can sign off.</p>
     </div>
     <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
   </div>

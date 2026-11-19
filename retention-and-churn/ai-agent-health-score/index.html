@@ -20,9 +20,9 @@
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261120a">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<script src="../../assets/js/site.js?v=20261119f" defer></script>
+<script src="../../assets/js/site.js?v=20261120a" defer></script>
 </head>
 <body id="top">
 <div class="progress" aria-hidden="true"><i data-progress></i></div>
@@ -30,12 +30,12 @@
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg><span class="theme-toggle__text">Dark mode</span></button>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../../#case-studies">Case studies</a></li>
         <li><a href="../../#how">How I work</a></li>
         <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
-        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
       </ul>
     </nav>
   </div>
@@ -45,13 +45,13 @@
   <div class="shell cs-top">
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../#case-studies">Case studies</a></li><li>Retention and churn</li></ol></nav>
     <h1>A health score for an AI agent</h1>
-    <p class="sowhat">41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it's new and busy.</p>
+    <p class="sowhat">41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it’s new and busy.</p>
   </div>
   <div class="shell">
     <section class="broke" aria-labelledby="broke-title">
       <h2 id="broke-title">Where the chain broke</h2>
       <ol class="stages" aria-label="Value chain stages, with the break marked"><li>Buy</li><li>Onboard</li><li class="is-break">Adopt<span class="visually-hidden"> (where it broke)</span></li><li>Realise value</li><li>Renew</li></ol>
-      <p>Adoption. The largest account looked busy, but the agent wasn't yet handling enough of the work the customer bought it for. A score built on usage couldn't see that.</p>
+      <p>Adoption. The largest account looked busy, but the agent wasn’t yet handling enough of the work the customer bought it for. A score built on usage couldn’t see that.</p>
     </section>
   </div>
   <div class="shell glance">
@@ -60,7 +60,7 @@
       <dl class="sum">
         <div><dt>Challenge</dt><dd>Standard health scores count logins and usage. For an AI agent that handles calls, bookings and urgent requests for regulated service businesses, usage says little about whether the AI is getting it right, or whether the customer can see the value.</dd></div>
         <div><dt>Approach</dt><dd>Designed a score of 24 metrics across six dimensions, weighted by lifecycle stage, with red-flag caps for safety and compliance incidents and a data confidence figure. I built it as a formula-driven Excel model and ran it on eight sample accounts.</dd></div>
-        <div><dt>Impact</dt><dd>41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it's new and busy.</dd></div>
+        <div><dt>Impact</dt><dd>41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it’s new and busy.</dd></div>
         <div><dt>Skills shown</dt><dd><ul><li>Health scoring for AI products</li><li>Lifecycle-weighted modelling</li><li>Red-flag caps and data confidence</li></ul></dd></div>
         <div><dt>Tools</dt><dd><ul><li>Excel</li><li>Claude for research and drafting</li></ul></dd></div>
       </dl>
@@ -68,23 +68,24 @@
     <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">41%</p><p class="figure__t">of ARR at risk across eight accounts</p></li><li class="figure"><p class="figure__n">£180k</p><p class="figure__t">largest at-risk account, still in onboarding</p></li><li class="figure"><p class="figure__n">69</p><p class="figure__t">ARR-weighted score out of 100</p></li><li class="figure"><p class="figure__n">24</p><p class="figure__t">metrics across six dimensions</p></li></ul>
   </div>
   <div class="shell">
+    <details class="toc"><summary>On this page</summary><ol><li><a href="#why-a-standard-health-score-fails-for-ai-agents">Why a standard health score fails for AI agents</a></li><li><a href="#the-six-dimensions">The six dimensions</a></li><li><a href="#where-compliance-sits-in-the-model">Where compliance sits in the model</a></li><li><a href="#how-the-score-is-calculated">How the score is calculated</a></li><li><a href="#what-the-model-shows">What the model shows</a></li><li><a href="#alerts-and-plays">Alerts and plays</a></li><li><a href="#events-to-instrument-before-go-live">Events to instrument before go-live</a></li><li><a href="#how-i-d-calibrate-it">How I’d calibrate it</a></li><li><a href="#downloads">Downloads</a></li></ol></details>
     <div class="prose">
-<p class="lede">How I'd redesign a customer health score when the real question isn't "are they logging in?" but "is the AI doing the work well enough that the customer relies on it and can see the value?"</p>
+<p class="lede">How I’d redesign a customer health score when the real question isn’t "are they logging in?" but "is the AI doing the work well enough that the customer relies on it and can see the value?"</p>
 <p class="note">The organisations, accounts and figures here are fictional. The product is described generically: an AI agent that answers calls and messages, books appointments and triages urgent requests for regulated service businesses, such as dental practices, physiotherapy clinics, heating and plumbing firms and letting agents.</p>
 
-<h2>Why a standard health score fails for AI agents</h2>
-<p>A typical SaaS health score rewards activity: logins, seats used, features clicked. An AI agent can be busy and still failing. It can handle hundreds of calls while staff quietly redo its work, route the hard calls around it, or lose trust after one bad answer. In a regulated business a wrong answer isn't just poor service. It can be a safety, data protection or regulatory breach.</p>
+<h2 id="why-a-standard-health-score-fails-for-ai-agents">Why a standard health score fails for AI agents</h2>
+<p>A typical SaaS health score rewards activity: logins, seats used, features clicked. An AI agent can be busy and still failing. It can handle hundreds of calls while staff quietly redo its work, route the hard calls around it, or lose trust after one bad answer. In a regulated business a wrong answer isn’t just poor service. It can be a safety, data protection or regulatory breach.</p>
 <p>So I built this score on six principles:</p>
 <ol>
-  <li><strong>Outcomes first, activity second.</strong> I give outcomes the most weight because that's what the customer renews for.</li>
-  <li><strong>Measure the whole value stream.</strong> That includes the hand-off from AI to staff, because that's where urgent requests get lost.</li>
-  <li><strong>AI quality is its own dimension.</strong> I don't let high usage hide a high error rate.</li>
+  <li><strong>Outcomes first, activity second.</strong> I give outcomes the most weight because that’s what the customer renews for.</li>
+  <li><strong>Measure the whole value stream.</strong> That includes the hand-off from AI to staff, because that’s where urgent requests get lost.</li>
+  <li><strong>AI quality is its own dimension.</strong> I don’t let high usage hide a high error rate.</li>
   <li><strong>Instrument before you score.</strong> Missing data lowers a confidence figure. It never counts as zero.</li>
   <li><strong>Combine numbers with CSM judgement.</strong> A CSM can override the score, but only with a written reason.</li>
-  <li><strong>Treat weights as a hypothesis.</strong> I test them against real renewals and churn, and change them when they're wrong.</li>
+  <li><strong>Treat weights as a hypothesis.</strong> I test them against real renewals and churn, and change them when they’re wrong.</li>
 </ol>
 
-<h2>The six dimensions</h2>
+<h2 id="the-six-dimensions">The six dimensions</h2>
 <p>Each dimension answers one question and has four metrics. Every metric is scaled from 0 to 100 in a straight line between a red threshold and a green threshold.</p>
 <div class="dims">
   <section class="dim">
@@ -149,14 +150,14 @@
   </section>
 </div>
 
-<h2>Where compliance sits in the model</h2>
-<p>Compliance isn't a separate checklist bolted on at the end. It runs through the score in three places:</p>
+<h2 id="where-compliance-sits-in-the-model">Where compliance sits in the model</h2>
+<p>Compliance isn’t a separate checklist bolted on at the end. It runs through the score in three places:</p>
 <ul>
   <li><strong>Critical errors (Q1)</strong> include compliance and safety errors, not just wrong facts or wrong actions.</li>
   <li><strong>Escalation pick-up (Q3)</strong> measures whether urgent hand-offs reach a person in time. An AI that spots an emergency is no use if nobody picks it up.</li>
   <li><strong>A critical safety or compliance incident</strong> in the last 30 days is a red flag, and caps the score at 49 however good the rest looks.</li>
 </ul>
-<p>What counts as a critical error depends on the sector. These are the ones I'd agree with each customer before go-live:</p>
+<p>What counts as a critical error depends on the sector. These are the ones I’d agree with each customer before go-live:</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Sector, A critical error the AI must never make">
 <table>
   <thead><tr><th>Sector</th><th>A critical error the AI must never make</th></tr></thead>
@@ -167,21 +168,21 @@
   </tbody>
 </table>
 </div>
-<p>The same thinking applies to any regulated service business: agree up front which mistakes are unacceptable, then measure them. The guardrails I'd set at go-live:</p>
+<p>The same thinking applies to any regulated service business: agree up front which mistakes are unacceptable, then measure them. The guardrails I’d set at go-live:</p>
 <ul>
-  <li>The agent always says it's an AI.</li>
+  <li>The agent always says it’s an AI.</li>
   <li>Complaints, payments and emergencies always go to a person.</li>
   <li>Every conversation is kept as an audit trail.</li>
 </ul>
 
-<h2>How the score is calculated</h2>
+<h2 id="how-the-score-is-calculated">How the score is calculated</h2>
 <ol>
   <li>Each metric is scaled from 0 to 100 between its red and green thresholds.</li>
   <li>The four metrics in a dimension combine into a dimension score using their weights.</li>
-  <li>The six dimension scores combine into one score using the weights for the account's lifecycle stage.</li>
+  <li>The six dimension scores combine into one score using the weights for the account’s lifecycle stage.</li>
   <li>If any red flag is set, the score is capped at 49.</li>
 </ol>
-<p>What matters changes as an account matures. In onboarding I weight adoption most, because an account that isn't embedded in the first 90 days is much harder to win back later. By renewal, value and the relationship matter most, because that's what the decision rests on.</p>
+<p>What matters changes as an account matures. In onboarding I weight adoption most, because an account that isn’t embedded in the first 90 days is much harder to win back later. By renewal, value and the relationship matter most, because that’s what the decision rests on.</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Dimension, Onboarding, Adoption, Mature, Renewal">
 <table>
   <thead><tr><th>Dimension</th><th class="num">Onboarding</th><th class="num">Adoption</th><th class="num">Mature</th><th class="num">Renewal</th></tr></thead>
@@ -197,9 +198,9 @@
 </div>
 <p><strong>Red flags.</strong> Any one of these caps the score at 49: the sponsor or champion has left; a critical safety or compliance incident in the last 30 days; an invoice 60 or more days overdue; a competitor evaluation or notice given. I use a cap because these events can end an account on their own, and an average would dilute them.</p>
 <p><strong>Bands.</strong> <span class="band band--healthy">Healthy</span> 75 and above, <span class="band band--watch">Watch</span> 50 to 74, <span class="band band--risk">At risk</span> below 50. A drop of 10 or more points triggers an alert, whatever the band.</p>
-<p><strong>Confidence.</strong> If a metric has no data, it's left out and the data confidence figure goes down. Below 70%, the score is labelled low confidence. I'd rather show an honest gap than a precise-looking number built on zeros.</p>
+<p><strong>Confidence.</strong> If a metric has no data, it’s left out and the data confidence figure goes down. Below 70%, the score is labelled low confidence. I’d rather show an honest gap than a precise-looking number built on zeros.</p>
 
-<h2>What the model shows</h2>
+<h2 id="what-the-model-shows">What the model shows</h2>
 <p>Results as at 29 October 2026, across eight sample accounts.</p>
 <p class="chart-title">ARR by health band (£645,000 across 8 accounts)</p>
 <div class="bars" role="img" aria-label="ARR by health band. Healthy: £264,000 across 2 accounts. Watch: £114,000 across 2 accounts. At risk: £267,000 across 4 accounts.">
@@ -233,12 +234,12 @@
 <p>On the weighted average alone, Fenwick scores 73, a reasonable Watch. But it had a critical safety incident in the last 30 days, so the score is capped at 49 and the account moves to At risk. As an illustrative example, picture a customer reporting a gas smell and the agent booking it as a routine job. One call like that matters more than a month of good resolution rates. The play is a quality escalation: review the error with Product, fix the pattern, and confirm that emergencies reach a person.</p>
 
 <h3>Cobalt Heating &amp; Plumbing: a sharp drop while still in Watch</h3>
-<p>Cobalt dropped 27 points in one period but still sits in Watch at 54. A view that only shows bands would show amber, not a problem. The sharp-drop alert catches it. Its weakest dimension is relationship and sentiment. That's an early warning I'd act on now, months before the renewal conversation.</p>
+<p>Cobalt dropped 27 points in one period but still sits in Watch at 54. A view that only shows bands would show amber, not a problem. The sharp-drop alert catches it. Its weakest dimension is relationship and sentiment. That’s an early warning I’d act on now, months before the renewal conversation.</p>
 
 <h3>Brightwater Clinics: big, new and at risk</h3>
-<p>Brightwater is the largest at-risk account at £180,000, and it's only in onboarding. Its volume looks busy, so a usage-only score would rate it fine. This score puts adoption first at this stage, and adoption and embedding is its weakest dimension: the agent isn't yet handling enough of the work the customer bought it for. Data confidence is 79%, above the 70% threshold, so the score of 45 stands, but I'd close the data gaps quickly. The play is an adoption sprint.</p>
+<p>Brightwater is the largest at-risk account at £180,000, and it’s only in onboarding. Its volume looks busy, so a usage-only score would rate it fine. This score puts adoption first at this stage, and adoption and embedding is its weakest dimension: the agent isn’t yet handling enough of the work the customer bought it for. Data confidence is 79%, above the 70% threshold, so the score of 45 stands, but I’d close the data gaps quickly. The play is an adoption sprint.</p>
 
-<h2>Alerts and plays</h2>
+<h2 id="alerts-and-plays">Alerts and plays</h2>
 <p>Each account gets one alert, in priority order: red flag, then sharp drop, then low confidence, then renewal at risk. The recommended play comes from the weakest dimension.</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Weakest dimension, Play">
 <table>
@@ -254,8 +255,8 @@
 </table>
 </div>
 
-<h2>Events to instrument before go-live</h2>
-<p>A score is only as good as its data. These are the product events I'd ask for before the first customer goes live, so the score isn't built on guesses.</p>
+<h2 id="events-to-instrument-before-go-live">Events to instrument before go-live</h2>
+<p>A score is only as good as its data. These are the product events I’d ask for before the first customer goes live, so the score isn’t built on guesses.</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Event, What it feeds">
 <table>
   <thead><tr><th>Event</th><th>What it feeds</th></tr></thead>
@@ -267,22 +268,22 @@
   </tbody>
 </table>
 </div>
-<p>The other metrics come from sources I'd also set up before go-live: channel logs against AI intake for coverage and bypass, a daily error review for critical errors, and a change log for configuration changes. Each critical error should be tagged by type, so safety and compliance errors can trigger the red flag.</p>
+<p>The other metrics come from sources I’d also set up before go-live: channel logs against AI intake for coverage and bypass, a daily error review for critical errors, and a change log for configuration changes. Each critical error should be tagged by type, so safety and compliance errors can trigger the red flag.</p>
 
-<h2>How I'd calibrate it</h2>
+<h2 id="how-i-d-calibrate-it">How I’d calibrate it</h2>
 <ul>
-  <li><strong>Months 0 to 3.</strong> Instrument the events and run the score quietly alongside each CSM's own view. No automatic plays yet. Where the score and the CSM disagree, I'd find out why.</li>
+  <li><strong>Months 0 to 3.</strong> Instrument the events and run the score quietly alongside each CSM’s own view. No automatic plays yet. Where the score and the CSM disagree, I’d find out why.</li>
   <li><strong>Months 3 to 6.</strong> Compare scores with what actually happened: renewals, downgrades, churn and escalations. Adjust thresholds and weights where the score got it wrong, and review every override and its reason.</li>
-  <li><strong>Ongoing.</strong> Review the weights each quarter against renewal outcomes. Drop metrics that don't predict anything, and add new ones as customers take on new use cases.</li>
+  <li><strong>Ongoing.</strong> Review the weights each quarter against renewal outcomes. Drop metrics that don’t predict anything, and add new ones as customers take on new use cases.</li>
 </ul>
-<p>Three things I'd avoid:</p>
+<p>Three things I’d avoid:</p>
 <ol>
   <li>Counting missing data as zero. It punishes new accounts for gaps in our own tracking.</li>
-  <li>Letting volume stand in for value. A busy agent isn't the same as a useful one.</li>
+  <li>Letting volume stand in for value. A busy agent isn’t the same as a useful one.</li>
   <li>Changing weights without testing them. Every change should be checked against real renewals and churn, and written down.</li>
 </ol>
 
-<h2>Downloads</h2>
+<h2 id="downloads">Downloads</h2>
 <p class="downloads">
   <a href="model/ai_agent_health_score_model.xlsx" download>Download the Excel model</a>
   <a href="data/accounts.csv" download>Download the dataset (CSV)</a>
@@ -295,7 +296,7 @@
   <div class="shell">
     <div class="cta__text">
       <h2 id="cta-title">Is a busy account hiding a value problem in your book?</h2>
-      <p>I'd be glad to talk through how a score like this could work for your team.</p>
+      <p>I’d be glad to talk through how a score like this could work for your team.</p>
     </div>
     <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
   </div>

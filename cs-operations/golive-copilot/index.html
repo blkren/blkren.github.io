@@ -20,9 +20,9 @@
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261120a">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<script src="../../assets/js/site.js?v=20261119f" defer></script>
+<script src="../../assets/js/site.js?v=20261120a" defer></script>
 </head>
 <body id="top">
 <div class="progress" aria-hidden="true"><i data-progress></i></div>
@@ -30,12 +30,12 @@
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg><span class="theme-toggle__text">Dark mode</span></button>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../../#case-studies">Case studies</a></li>
         <li><a href="../../#how">How I work</a></li>
         <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
-        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
       </ul>
     </nav>
   </div>
@@ -51,14 +51,14 @@
     <section class="broke" aria-labelledby="broke-title">
       <h2 id="broke-title">Where the chain broke</h2>
       <ol class="stages" aria-label="Value chain stages, with the break marked"><li>Buy</li><li class="is-break">Onboard<span class="visually-hidden"> (where it broke)</span></li><li>Adopt</li><li>Realise value</li><li>Renew</li></ol>
-      <p>Onboarding. AI agent go-lives rarely fail on configuration. They fail when staff don't trust the agent, when an integration breaks under real traffic, or when a launch goes wider than it was ready for.</p>
+      <p>Onboarding. AI agent go-lives rarely fail on configuration. They fail when staff don’t trust the agent, when an integration breaks under real traffic, or when a launch goes wider than it was ready for.</p>
     </section>
   </div>
   <div class="shell glance">
     <section aria-labelledby="glance-title">
       <h2 id="glance-title" class="visually-hidden">At a glance</h2>
       <dl class="sum">
-        <div><dt>Challenge</dt><dd>AI agent go-lives rarely fail on configuration. They fail when staff don't trust or use the agent, when an integration breaks under real traffic, or when a launch goes wider than it was ready for. A checklist doesn't stop any of that.</dd></div>
+        <div><dt>Challenge</dt><dd>AI agent go-lives rarely fail on configuration. They fail when staff don’t trust or use the agent, when an integration breaks under real traffic, or when a launch goes wider than it was ready for. A checklist doesn’t stop any of that.</dd></div>
         <div><dt>Approach</dt><dd>Built a sector-neutral method (two skills and fourteen templates) with sector packs for lettings, health clinics, and heating and plumbing. It adds staff interviews before configuration, a test gate with adversarial and failure-mode tests, a five-stage rollout with exit gates and rollback, and a go/no-go signed by the customer, CS and engineering.</dd></div>
         <div><dt>Impact</dt><dd>Two fictional samples. At Kestrel Row, the original pack predicted both critical failures but nothing enforced it: resolution rate 17% against correct handling 50%. At Brightwater Clinics (£180,000 ARR), the gated rollout holds one cohort on a NO-GO and reports 45% coverage as on plan, not failing.</dd></div>
         <div><dt>Skills shown</dt><dd><ul><li>Technical go-lives and rollout</li><li>People and change</li><li>Test gates and engineering discipline</li></ul></dd></div>
@@ -68,20 +68,21 @@
     <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">17%</p><p class="figure__t">resolution rate at Kestrel Row, against 50% correct handling</p></li><li class="figure"><p class="figure__n">18 of 20</p><p class="figure__t">scenarios passed at Kestrel Row, and still NO-GO on safety</p></li><li class="figure"><p class="figure__n">14</p><p class="figure__t">templates and two skills, with three sector packs</p></li><li class="figure"><p class="figure__n">45%</p><p class="figure__t">coverage at Brightwater, on plan by design</p></li></ul>
   </div>
   <div class="shell">
+    <details class="toc"><summary>On this page</summary><ol><li><a href="#why-ai-agent-go-lives-fail">Why AI agent go-lives fail</a></li><li><a href="#the-method-at-a-glance">The method at a glance</a></li><li><a href="#phased-rollout">Phased rollout</a></li><li><a href="#people-and-change">People and change</a></li><li><a href="#engineering-discipline">Engineering discipline</a></li><li><a href="#kestrel-row-the-gate-that-wasn-t-enforced">Kestrel Row: the gate that wasn’t enforced</a></li><li><a href="#brightwater-clinics-an-enterprise-go-live-mid-rollout">Brightwater Clinics: an enterprise go-live mid-rollout</a></li><li><a href="#how-it-feeds-the-health-score">How it feeds the health score</a></li><li><a href="#design-decisions">Design decisions</a></li><li><a href="#what-i-d-build-next">What I’d build next</a></li><li><a href="#the-files-on-github">The files on GitHub</a></li></ol></details>
     <div class="prose">
 <p class="lede">The method I use to take an AI agent live at a regulated service business: people first, a test gate that actually blocks, a rollout where each stage proves value before the next, and evidence afterwards.</p>
 <p class="note">All businesses, people and figures are fictional. The AI agent is described generically: it answers calls and messages, books appointments and triages urgent requests for regulated service businesses. Brightwater Clinics is the same account as in the <a href="../../retention-and-churn/ai-agent-health-score/">AI agent health score</a>.</p>
 
-<h2>Why AI agent go-lives fail</h2>
+<h2 id="why-ai-agent-go-lives-fail">Why AI agent go-lives fail</h2>
 <p>Setting up the agent is the easy part. Prices, opening hours and booking rules can all be configured in a few days. What goes wrong is everything around it.</p>
 <ul>
   <li><strong>Behaviour change.</strong> Staff who think the agent is there to replace them, or who expect it to fail, answer first, redo its work and route the hard calls around it. The agent looks busy and the value never shows.</li>
-  <li><strong>Integrations.</strong> A booking system that's read-only, a calendar that doesn't know about holidays, a leaver who keeps access. These only show up under real traffic.</li>
+  <li><strong>Integrations.</strong> A booking system that’s read-only, a calendar that doesn’t know about holidays, a leaver who keeps access. These only show up under real traffic.</li>
   <li><strong>Going too wide, too soon.</strong> A keen customer and a close date push a launch past what was tested. One bad answer at the wrong moment, and the story becomes "AI is overrated".</li>
 </ul>
 <p>So the method treats a go-live as a change programme with engineering controls, not a set-up task.</p>
 
-<h2>The method at a glance</h2>
+<h2 id="the-method-at-a-glance">The method at a glance</h2>
 <p class="phase-label">Before go-live: once per customer</p>
 <ol class="flow">
   <li><strong>People discovery</strong><span>Voice interviews with staff</span></li>
@@ -97,12 +98,12 @@
     <li><strong>Log review</strong><span>Two rates, five buckets</span></li>
     <li class="loop"><strong>Templates and product fixes</strong><span>↩ Back to step 4</span></li>
   </ol>
-  <p class="cycle-back">↩ Every fix becomes a new test before it's closed, so the gate gets stricter with each turn of the loop.</p>
+  <p class="cycle-back">↩ Every fix becomes a new test before it’s closed, so the gate gets stricter with each turn of the loop.</p>
 </div>
 <p>Everything sits in five buckets, so a risk before launch and an issue after launch can be compared across customers: <strong>Coverage</strong> (the AI sees the requests), <strong>Quality</strong> (it handles them correctly), <strong>Adoption</strong> (staff rely on it), <strong>Outcomes</strong> (it changes business results) and <strong>Evidence</strong> (the owner can see the value).</p>
-<p>The core is sector-neutral. A sector pack adds each sector's workflows, urgent triggers, always-human topics, compliance flags and test scenarios. For example: a lettings agent must never apply a blanket ban; a clinic's agent never gives clinical advice; and for a heating firm, a reported gas smell is always an emergency.</p>
+<p>The core is sector-neutral. A sector pack adds each sector’s workflows, urgent triggers, always-human topics, compliance flags and test scenarios. For example: a lettings agent must never apply a blanket ban; a clinic’s agent never gives clinical advice; and for a heating firm, a reported gas smell is always an emergency.</p>
 
-<h2>Phased rollout</h2>
+<h2 id="phased-rollout">Phased rollout</h2>
 <p>A phased, cohort-based rollout where each stage proves value before the next. A stage starts when the one before has met its gate, not when the date arrives.</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Stage, What runs, Exit gate, Owner">
 <table>
@@ -112,33 +113,33 @@
     <tr><td>1. One site, out of hours</td><td>AI handles evenings and weekends</td><td>2 weeks, no critical errors, escalations picked up on time</td><td>Go-live lead, site lead</td></tr>
     <tr><td>2. Overflow in hours</td><td>AI takes unanswered calls</td><td>Bypass below target; champion signs off</td><td>Champion</td></tr>
     <tr><td>3. All channels, all sites</td><td>Full coverage</td><td>Value review shows a gain against baseline</td><td>Decision maker, go-live lead</td></tr>
-    <tr><td>4. New use cases</td><td>For example maintenance, valuations, recalls</td><td>That use case's own tests passed</td><td>Go-live lead</td></tr>
+    <tr><td>4. New use cases</td><td>For example maintenance, valuations, recalls</td><td>That use case’s own tests passed</td><td>Go-live lead</td></tr>
   </tbody>
 </table>
 </div>
 <p><strong>Rollback, at every stage:</strong> any critical safety or compliance error pauses that use case, at that cohort, and it restarts one stage back. Other use cases keep running.</p>
-<p>Phasing builds trust stage by stage. Staff see the agent work on a small scope first, problems are found where they're cheap to fix, and each gate gives the decision maker evidence rather than promises. It's slower on paper than a big-bang launch, and much faster than recovering from a failed one.</p>
+<p>Phasing builds trust stage by stage. Staff see the agent work on a small scope first, problems are found where they’re cheap to fix, and each gate gives the decision maker evidence rather than promises. It’s slower on paper than a big-bang launch, and much faster than recovering from a failed one.</p>
 
-<h2>People and change</h2>
+<h2 id="people-and-change">People and change</h2>
 <p>Before I configure anything, I talk to the people whose work is about to change.</p>
 <ul>
-  <li><strong>Discovery interviews.</strong> Five to ten minutes each, one to one, voice-recorded with consent and transcribed by a note-taker the business has approved. Voice, because people speak more freely than they type. I ask what they do today, where requests fall through, what they'd hand over gladly, what worries them about the agent, and who people go to for answers.</li>
+  <li><strong>Discovery interviews.</strong> Five to ten minutes each, one to one, voice-recorded with consent and transcribed by a note-taker the business has approved. Voice, because people speak more freely than they type. I ask what they do today, where requests fall through, what they’d hand over gladly, what worries them about the agent, and who people go to for answers.</li>
   <li><strong>A people risk register.</strong> Fear of replacement, scepticism, single points of knowledge, influential sceptics and staff not consulted, each with evidence, a rating and an action. A Red people risk blocks the next stage like any other Red.</li>
-  <li><strong>A champion map.</strong> The org chart says who decides. The map shows who's enthusiastic, who's influential and who people already go to. The best champion is all three. The influential sceptic gets asked to break it in testing.</li>
-  <li><strong>Honest comms.</strong> A short message from the business's decision maker that names the worry about jobs, is honest that roles change, says what stays human, and frames the value as more time for the work only people can do. It never promises anything the business hasn't committed to.</li>
+  <li><strong>A champion map.</strong> The org chart says who decides. The map shows who’s enthusiastic, who’s influential and who people already go to. The best champion is all three. The influential sceptic gets asked to break it in testing.</li>
+  <li><strong>Honest comms.</strong> A short message from the business’s decision maker that names the worry about jobs, is honest that roles change, says what stays human, and frames the value as more time for the work only people can do. It never promises anything the business hasn’t committed to.</li>
 </ul>
 
-<h2>Engineering discipline</h2>
+<h2 id="engineering-discipline">Engineering discipline</h2>
 <ul>
   <li><strong>The gate.</strong> Every scenario has a pass rule. To go live: 100% of safety and escalation scenarios, at least 90% overall, rerun after every configuration change. A failed safety scenario is NO-GO however good the rest looks.</li>
-  <li><strong>Adversarial tests.</strong> Instructions hidden in an email; a request for someone else's personal data; someone pretending to be the account holder; an abusive caller; a caller who doesn't speak English; a silent or noisy line.</li>
+  <li><strong>Adversarial tests.</strong> Instructions hidden in an email; a request for someone else’s personal data; someone pretending to be the account holder; an abusive caller; a caller who doesn’t speak English; a silent or noisy line.</li>
   <li><strong>Integration and failure-mode tests.</strong> The system of record is down, so take details and offer a callback; double bookings; calendar conflicts; the clock change; warm transfer to a person; voicemail detection.</li>
   <li><strong>Enterprise readiness.</strong> Single sign-on, automatic provisioning and removal tested with a real test leaver, an access model that matches the signed-off site and role map, a data processing agreement, retention settings and audit logs. A check that fails because of a product gap goes to Product with the account, ARR and lifecycle stage attached.</li>
-  <li><strong>A configuration change log.</strong> Version, change, reason, tests rerun, result and rollback path. It feeds the health score's configuration change failure rate.</li>
-  <li><strong>An incident runbook.</strong> Severity definitions, a tested switch that routes everything to a person, who's told and when, root cause, fix, retest, a written explanation to the customer, and a new test so it can't happen quietly again.</li>
+  <li><strong>A configuration change log.</strong> Version, change, reason, tests rerun, result and rollback path. It feeds the health score’s configuration change failure rate.</li>
+  <li><strong>An incident runbook.</strong> Severity definitions, a tested switch that routes everything to a person, who’s told and when, root cause, fix, retest, a written explanation to the customer, and a new test so it can’t happen quietly again.</li>
 </ul>
 
-<h2>Kestrel Row: the gate that wasn't enforced</h2>
+<h2 id="kestrel-row-the-gate-that-wasn-t-enforced">Kestrel Row: the gate that wasn’t enforced</h2>
 <p>Kestrel Row Lettings is a small, two-branch lettings business. I ran it through the first version of the method, which had a test set but no gate. The go-live pack recommended starting at one branch, Northfield, out of hours only, with maintenance held back until an out-of-hours emergency contact was named.</p>
 <p>The week-one logs show the other branch live in hours and maintenance live. And the two critical failures were already in the test set:</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Test scenario, Expected, In production">
@@ -156,29 +157,29 @@
   <div class="stat"><div class="big">50%</div><div class="stat__label">Correct handling rate: 6 of 12. Resolutions, plus correct escalations, plus bookings staff redid where the AI was right.</div></div>
 </div>
 <p>The gap is the cost of bypass: work the AI did correctly that a person still had to touch. Two of those were Riverside bookings that staff redid in hours, at the branch the pack said not to start with.</p>
-<p><strong>The lesson: a test set only protects you when it's a gate.</strong> That's why the method now has exit gates, a signed go/no-go, and a rule that a failed safety or escalation scenario is always NO-GO. A small gate check script now applies that rule: run on the Kestrel Row test results, it passes 18 of 20 scenarios (90%) and still prints NO-GO, because scenarios 13 and 19 are safety and escalation scenarios.</p>
+<p><strong>The lesson: a test set only protects you when it’s a gate.</strong> That’s why the method now has exit gates, a signed go/no-go, and a rule that a failed safety or escalation scenario is always NO-GO. A small gate check script now applies that rule: run on the Kestrel Row test results, it passes 18 of 20 scenarios (90%) and still prints NO-GO, because scenarios 13 and 19 are safety and escalation scenarios.</p>
 
-<h2>Brightwater Clinics: an enterprise go-live mid-rollout</h2>
-<p>Brightwater Clinics is a physiotherapy and dental group with 12 clinics, worth £180,000 a year, in onboarding on a 12-month contract that started on 1 September 2026 and renews on 1 September 2027. The first stage went live on 21 October, 50 days in. As at 29 October it's eight days into a gated rollout.</p>
+<h2 id="brightwater-clinics-an-enterprise-go-live-mid-rollout">Brightwater Clinics: an enterprise go-live mid-rollout</h2>
+<p>Brightwater Clinics is a physiotherapy and dental group with 12 clinics, worth £180,000 a year, in onboarding on a 12-month contract that started on 1 September 2026 and renews on 1 September 2027. The first stage went live on 21 October, 50 days in. As at 29 October it’s eight days into a gated rollout.</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Cohort, Clinics, Stage, Status">
 <table>
   <thead><tr><th>Cohort</th><th>Clinics</th><th>Stage</th><th>Status</th></tr></thead>
   <tbody>
     <tr><td>A</td><td>3</td><td>1. Out of hours</td><td>Live since 21 October. Exit review on 4 November: escalations picked up on time at 75% against 95% would fail it</td></tr>
     <tr><td>B</td><td>4</td><td>1. Out of hours</td><td>As cohort A</td></tr>
-    <tr><td>C</td><td>5</td><td>0. Shadow</td><td><span class="band band--risk">NO-GO</span> Test gate met (31 of 31 safety, 94% overall), but no out-of-hours dental cover and the escalation rota doesn't cover these clinics</td></tr>
+    <tr><td>C</td><td>5</td><td>0. Shadow</td><td><span class="band band--risk">NO-GO</span> Test gate met (31 of 31 safety, 94% overall), but no out-of-hours dental cover and the escalation rota doesn’t cover these clinics</td></tr>
   </tbody>
 </table>
 </div>
 <ul>
-  <li><strong>Coverage is 45% and use cases live are 40% (2 of 5), by design.</strong> Stage 1 covers calls out of hours, plus web chat and appointment reminder replies at all hours, at seven clinics. Shadow-stage drafts don't count as coverage, because a person still sends them. Urgent symptom routing stays at stage 0 until dental out-of-hours cover is named.</li>
+  <li><strong>Coverage is 45% and use cases live are 40% (2 of 5), by design.</strong> Stage 1 covers calls out of hours, plus web chat and appointment reminder replies at all hours, at seven clinics. Shadow-stage drafts don’t count as coverage, because a person still sends them. Urgent symptom routing stays at stage 0 until dental out-of-hours cover is named.</li>
   <li><strong>People first.</strong> Interviews found a receptionist worried about her hours, a practice manager everyone already calls (now the champion), and an influential clinician who is against anything near clinical triage. She now owns testing of the urgent symptom rules, with a veto on their go-live.</li>
-  <li><strong>Enterprise readiness.</strong> A test leaver kept access for 21 hours because removal syncs once a day, and data exports aren't in the audit log. Both went to Product as feedback with the account, ARR and stage attached.</li>
+  <li><strong>Enterprise readiness.</strong> A test leaver kept access for 21 hours because removal syncs once a day, and data exports aren’t in the audit log. Both went to Product as feedback with the account, ARR and stage attached.</li>
   <li><strong>Change discipline.</strong> Two of eight configuration changes failed in production, both after a partial test rerun. Since then, any change to booking or routing reruns the full suite.</li>
 </ul>
 
-<h2>How it feeds the health score</h2>
-<p>The go-live hands over a working set of metrics, so the <a href="../../retention-and-churn/ai-agent-health-score/">AI agent health score</a> isn't scoring a blank account.</p>
+<h2 id="how-it-feeds-the-health-score">How it feeds the health score</h2>
+<p>The go-live hands over a working set of metrics, so the <a href="../../retention-and-churn/ai-agent-health-score/">AI agent health score</a> isn’t scoring a blank account.</p>
 <div class="wrap" tabindex="0" role="region" aria-label="Table: Go-live output, Health score input, Brightwater">
 <table>
   <thead><tr><th>Go-live output</th><th>Health score input</th><th class="num">Brightwater</th></tr></thead>
@@ -193,18 +194,18 @@
   </tbody>
 </table>
 </div>
-<p>The health score puts adoption first in onboarding and flags Brightwater for an adoption sprint, which matches the go-live pack's own blockers. A bypass rate with no data lowers the score's confidence; it isn't counted as zero. The <a href="../../ai-workflows/account-brief-generator/">pre-call brief generator</a> then lists it as a data gap for the CSM to ask about.</p>
+<p>The health score puts adoption first in onboarding and flags Brightwater for an adoption sprint, which matches the go-live pack’s own blockers. A bypass rate with no data lowers the score’s confidence; it isn’t counted as zero. The <a href="../../ai-workflows/account-brief-generator/">pre-call brief generator</a> then lists it as a data gap for the CSM to ask about.</p>
 
-<h2>Design decisions</h2>
+<h2 id="design-decisions">Design decisions</h2>
 <ul>
   <li><strong>A sector-neutral core.</strong> What changes between a letting agent and a dental group is the urgent triggers, the always-human topics and the compliance flags. Those live in a sector pack; the method stays the same.</li>
   <li><strong>Gates over checklists.</strong> Kestrel Row had the right checklist. A gate is a checklist that can say no.</li>
   <li><strong>People before configuration.</strong> The interviews find the single point of knowledge and the influential sceptic before they find you.</li>
   <li><strong>AI drafts and a person decides.</strong> The skills never invent facts: gaps are marked <code>[MISSING]</code> and every requirement cites its source. The go-live lead checks every Red.</li>
-  <li><strong>Every fix becomes a test or a template.</strong> A failure found in production is added to the test suite before it's closed, and a fix needed twice becomes a template or a sector pack default.</li>
+  <li><strong>Every fix becomes a test or a template.</strong> A failure found in production is added to the test suite before it’s closed, and a fix needed twice becomes a template or a sector pack default.</li>
 </ul>
 
-<h2>What I'd build next</h2>
+<h2 id="what-i-d-build-next">What I’d build next</h2>
 <ul>
   <li>Run the gate check automatically after every configuration change, so a NO-GO blocks the change rather than just reporting it.</li>
   <li>A cross-customer view of bucket ratings, reviewed monthly, to show which bucket goes Red most often and where to invest.</li>
@@ -212,7 +213,7 @@
   <li>More sector packs as new verticals come on, each with its own test scenarios.</li>
 </ul>
 
-<h2>The files on GitHub</h2>
+<h2 id="the-files-on-github">The files on GitHub</h2>
 <p class="downloads">
   <a href="https://github.com/blkren/blkren.github.io/tree/main/cs-operations/golive-copilot">The whole kit</a>
   <a href="https://github.com/blkren/blkren.github.io/tree/main/cs-operations/golive-copilot/method">The method: skills and templates</a>
@@ -230,7 +231,7 @@
   <div class="shell">
     <div class="cta__text">
       <h2 id="cta-title">Taking an AI agent live and want it to stick?</h2>
-      <p>I'd be glad to talk through how a gated, people-first go-live could work for your customers.</p>
+      <p>I’d be glad to talk through how a gated, people-first go-live could work for your customers.</p>
     </div>
     <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
   </div>
