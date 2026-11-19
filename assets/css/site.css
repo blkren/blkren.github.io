@@ -238,6 +238,18 @@ code{font:.88em var(--mono);overflow-wrap:anywhere}
 .card .textlink:focus-visible{outline:none}
 .card:focus-within{outline:3px solid var(--gold);outline-offset:3px}
 .card:hover .textlink{text-decoration-thickness:5px}
+/* Phones: cards collapse to label, title and an arrow; the whole card stays tappable.
+   The summary and stage strip return on wider screens and lead every case study page. */
+@media (max-width:40rem){
+  .cards{gap:var(--s2)}
+  .card{grid-template-columns:minmax(0,1fr) auto;column-gap:var(--s3);row-gap:var(--s1);align-items:center;padding:var(--s3) var(--s4)}
+  .card>p:not(.label),.card .stages{display:none}
+  .card .label,.card h3{grid-column:1}
+  .card h3{font-size:1.12rem}
+  .card .textlink{grid-column:2;grid-row:1 / span 2;min-width:44px;justify-content:center;text-decoration:none;font:600 1.4rem/1 var(--serif)}
+  .card .textlink::before{content:"→" / ""}
+  .card__cta{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
 
 /* How I work: a workflow line, the same line and nodes as the value chain.
    When the section comes into view the line draws from step 1 to 4 and each step comes
