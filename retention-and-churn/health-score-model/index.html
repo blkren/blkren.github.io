@@ -3,70 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Customer Health Score Model</title>
+<title>Which customers need you this week? | Chelsea Alagoa</title>
 <meta name="description" content="A first-principles customer health score and churn-risk model for a fictional book of 80 SaaS accounts, with an Excel model and dataset.">
-<style>
-:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--red:#c0453a;--amber:#d9962b;--lgreen:#7fb069;--dgreen:#2f7a3e}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}}
-:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
-main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
-h1,h2,h3,.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
-h1{font-size:2rem;margin:.2em 0 .4em}
-h2{font-size:1.25rem;margin:2.2em 0 .5em}
-.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.lede{font-size:1.15rem;color:var(--muted)}
-.summary{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 18px;margin:20px 0}
-.summary dl{margin:0}
-.summary div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
-.summary div:last-child{border-bottom:0}
-.summary dt{font:600 .85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
-.summary dd{margin:0}
-@media (max-width:520px){.summary div{grid-template-columns:1fr;gap:2px}}
-.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
-table{width:100%;border-collapse:collapse;font:.92rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.wrap{overflow-x:auto}
-.chart-title{font:600 .9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:16px 0 10px}
-.bars{display:grid;gap:10px;font:.9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-.bar-row{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
-.bar-track{display:flex;align-items:center;gap:8px;min-width:0}
-.bar{display:block;height:22px;border-radius:3px;max-width:calc(100% - 130px)}
-.bar-value{white-space:nowrap;font-variant-numeric:tabular-nums}
-.chip{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;color:#fff}
-.red{background:var(--red)}.amber{background:var(--amber);color:#1d2129}.lgreen{background:var(--lgreen);color:#1d2129}.dgreen{background:var(--dgreen)}
-figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
-ol li,ul li{margin:.35em 0}
-a{color:var(--accent)}
-.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
-</style>
+<link rel="canonical" href="https://blkren.github.io/retention-and-churn/health-score-model/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Chelsea Alagoa">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://blkren.github.io/retention-and-churn/health-score-model/">
+<meta property="og:title" content="Which customers need you this week? | Chelsea Alagoa">
+<meta property="og:description" content="A first-principles customer health score and churn-risk model for a fictional book of 80 SaaS accounts, with an Excel model and dataset.">
+<meta property="og:image" content="https://blkren.github.io/assets/img/og-chain.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Chelsea Alagoa. A value chain line with a gold seam repairing the break.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../../assets/js/site.js?v=20261119f" defer></script>
 </head>
-<body>
-<main>
-<p class="eyebrow">Retention and churn · Health scoring · The SaaS version</p>
-<h1>Which customers need you this week?</h1>
+<body id="top">
+<div class="progress" aria-hidden="true"><i data-progress></i></div>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../#case-studies">Case studies</a></li>
+        <li><a href="../../#how">How I work</a></li>
+        <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+  <div class="shell cs-top">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../#case-studies">Case studies</a></li><li>Retention and churn</li></ol></nav>
+    <h1>Which customers need you this week?</h1>
+    <p class="sowhat">£371k ARR (24%) flagged red or amber, a ranked top 10 to act on first, and 29 expansion candidates worth £576k ARR.</p>
+  </div>
+  <div class="shell">
+    <section class="broke" aria-labelledby="broke-title">
+      <h2 id="broke-title">Where the chain broke</h2>
+      <ol class="stages" aria-label="Value chain stages, with the break marked"><li>Buy</li><li>Onboard</li><li>Adopt</li><li>Realise value</li><li class="is-break">Renew<span class="visually-hidden"> (where it broke)</span></li></ol>
+      <p>Renewal. With 80 accounts and one CSM, attention went to whoever shouted loudest, not to the revenue most at risk, so at-risk accounts could reach renewal without anyone acting.</p>
+    </section>
+  </div>
+  <div class="shell glance">
+    <section aria-labelledby="glance-title">
+      <h2 id="glance-title" class="visually-hidden">At a glance</h2>
+      <dl class="sum">
+        <div><dt>Challenge</dt><dd>80 accounts, £1.54m ARR and one CSM. Without a consistent score, attention goes to whoever shouts loudest, not to the revenue most at risk.</dd></div>
+        <div><dt>Approach</dt><dd>Chose signals that genuinely predict renewal, grouped and weighted them, set bands and hard caps, and linked each band and segment to a play</dd></div>
+        <div><dt>Impact</dt><dd>£371k ARR (24%) flagged red or amber, a ranked top 10 to act on first, and 29 expansion candidates worth £576k ARR</dd></div>
+        <div><dt>Skills shown</dt><dd><ul><li>Designing a health score</li><li>Prioritising churn risk by revenue</li><li>Turning data into actions</li></ul></dd></div>
+        <div><dt>Tools</dt><dd><ul><li>Excel (weighted scoring, ranking formulas)</li><li>Claude (analysis and build)</li><li>HTML and CSS</li><li>GitHub Pages</li></ul></dd></div>
+      </dl>
+    </section>
+    <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">£371k</p><p class="figure__t">ARR flagged red or amber, 24% of the book</p></li><li class="figure"><p class="figure__n">8</p><p class="figure__t">of those accounts renew within 90 days</p></li><li class="figure"><p class="figure__n">10</p><p class="figure__t">accounts capped by an overdue payment or repeated escalations</p></li><li class="figure"><p class="figure__n">29</p><p class="figure__t">expansion candidates worth £576k ARR</p></li></ul>
+  </div>
+  <div class="shell">
+    <div class="prose">
 <p class="lede">A customer health score built from first principles, for a fictional book of 80 accounts on an AI-enabled SaaS platform. It turns signals from the CRM and CS platform into a score, a priority list and a next action for every account.</p>
-
-<div class="summary sans">
-<dl>
-  <div><dt>Skill shown</dt><dd>Designing a health score, prioritising churn risk by revenue, and turning data into actions</dd></div>
-  <div><dt>The problem</dt><dd>80 accounts, £1.54m ARR and one CSM. Without a consistent score, attention goes to whoever shouts loudest, not to the revenue most at risk.</dd></div>
-  <div><dt>What I did</dt><dd>Chose signals that genuinely predict renewal, grouped and weighted them, set bands and hard caps, and linked each band and segment to a play</dd></div>
-  <div><dt>Result</dt><dd>£371k ARR (24%) flagged red or amber, a ranked top 10 to act on first, and 29 expansion candidates worth £576k ARR</dd></div>
-  <div><dt>Tools used</dt><dd>Excel (weighted scoring, ranking formulas), Claude (analysis and build), HTML/CSS, GitHub Pages</dd></div>
-</dl>
-</div>
-
 <p class="note"><strong>Where this fits.</strong> This is the simpler health score I built first, for a standard SaaS product. The <a href="../ai-agent-health-score/">AI agent health score</a> builds on it for products where usage alone can’t tell you whether the AI is getting it right. I later moved this model out of Excel into <a href="../../cs-operations/health-score-pipeline/">SQL with weekly Slack alerts</a>.</p>
 
 <p class="note">All accounts, names and figures are fictional. The signals and bands are based on how I've run health scoring in practice. The weightings are my proposed starting point.</p>
 
 <h2>Starting from first principles</h2>
 <p>A health score should answer one question: <strong>how likely is this customer to renew and grow?</strong> So I only kept signals that explain renewal, and grouped them by the reason a customer stays or leaves.</p>
-<div class="wrap">
+<div class="wrap" tabindex="0" role="region" aria-label="Table: Dimension, Weight, Signals, Why it matters">
 <table>
   <thead><tr><th>Dimension</th><th class="num">Weight</th><th>Signals</th><th>Why it matters</th></tr></thead>
   <tbody>
@@ -80,7 +90,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 <p>Each signal is scored 0 to 10 against clear thresholds, then combined into a score out of 10.</p>
 
 <h2>Bands, caps and plays</h2>
-<p><span class="chip red">Red 1–4</span> <span class="chip amber">Amber 5–6</span> <span class="chip lgreen">Light green 7–8</span> <span class="chip dgreen">Dark green 9–10</span></p>
+<p><span class="band band--risk">Red 1–4</span> <span class="band band--watch">Amber 5–6</span> <span class="band band--lgreen">Light green 7–8</span> <span class="band band--healthy">Dark green 9–10</span></p>
 <ul>
   <li><strong>Hard caps:</strong> an overdue payment or two or more escalations caps the score at 6 (amber), however good everything else looks. A happy customer with an unpaid invoice isn't healthy.</li>
   <li><strong>Plays depend on band and segment.</strong> Every red or amber account gets an account review first. Then it's an executive call for enterprise accounts, a check-in for mid-market, and a check-in plus targeted self-help for SMB. Dark green accounts move to expansion and advocacy.</li>
@@ -90,10 +100,10 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 <h2>What the model shows</h2>
 <p class="chart-title">ARR by health band (£1.54m across 80 accounts)</p>
 <div class="bars" role="img" aria-label="ARR by band. Red: £171k across 10 accounts. Amber: £200k across 16 accounts. Light green: £668k across 28 accounts. Dark green: £500k across 26 accounts.">
-  <div class="bar-row"><span>Red</span><span class="bar-track"><span class="bar" style="width:25.6%;background:var(--red)"></span><span class="bar-value">£171k · 10 accounts</span></span></div>
-  <div class="bar-row"><span>Amber</span><span class="bar-track"><span class="bar" style="width:29.9%;background:var(--amber)"></span><span class="bar-value">£200k · 16 accounts</span></span></div>
+  <div class="bar-row"><span>Red</span><span class="bar-track"><span class="bar" style="width:25.6%;background:var(--risk)"></span><span class="bar-value">£171k · 10 accounts</span></span></div>
+  <div class="bar-row"><span>Amber</span><span class="bar-track"><span class="bar" style="width:29.9%;background:var(--watch)"></span><span class="bar-value">£200k · 16 accounts</span></span></div>
   <div class="bar-row"><span>Light green</span><span class="bar-track"><span class="bar" style="width:100%;background:var(--lgreen)"></span><span class="bar-value">£668k · 28 accounts</span></span></div>
-  <div class="bar-row"><span>Dark green</span><span class="bar-track"><span class="bar" style="width:74.8%;background:var(--dgreen)"></span><span class="bar-value">£500k · 26 accounts</span></span></div>
+  <div class="bar-row"><span>Dark green</span><span class="bar-track"><span class="bar" style="width:74.8%;background:var(--healthy)"></span><span class="bar-value">£500k · 26 accounts</span></span></div>
 </div>
 
 <ul>
@@ -103,15 +113,15 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 </ul>
 
 <p class="chart-title">First five accounts to act on</p>
-<div class="wrap">
+<div class="wrap" tabindex="0" role="region" aria-label="Table: Account, Segment, ARR, Score, Renews in, Play">
 <table>
   <thead><tr><th>Account</th><th>Segment</th><th class="num">ARR</th><th class="num">Score</th><th class="num">Renews in</th><th>Play</th></tr></thead>
   <tbody>
-    <tr><td>Yarrow Foods</td><td>Enterprise</td><td class="num">£79,500</td><td class="num"><span class="chip red">2.6</span></td><td class="num">90 days</td><td>Executive call within 5 working days; joint recovery plan</td></tr>
-    <tr><td>Ember Finance</td><td>Enterprise</td><td class="num">£79,000</td><td class="num"><span class="chip amber">6.9</span></td><td class="num">64 days</td><td>Executive call (renewal within 120 days)</td></tr>
-    <tr><td>Cobalt Charity</td><td>Mid-market</td><td class="num">£29,000</td><td class="num"><span class="chip red">4.7</span></td><td class="num">351 days</td><td>Check-in within 5 working days; recovery plan</td></tr>
-    <tr><td>Tidal Recruitment</td><td>Mid-market</td><td class="num">£21,000</td><td class="num"><span class="chip amber">5.6</span></td><td class="num">68 days</td><td>Check-in within 2 weeks</td></tr>
-    <tr><td>Maple Retail</td><td>Mid-market</td><td class="num">£15,000</td><td class="num"><span class="chip red">3.3</span></td><td class="num">248 days</td><td>Check-in within 5 working days; recovery plan</td></tr>
+    <tr><td>Yarrow Foods</td><td>Enterprise</td><td class="num">£79,500</td><td class="num"><span class="band band--risk">2.6</span></td><td class="num">90 days</td><td>Executive call within 5 working days; joint recovery plan</td></tr>
+    <tr><td>Ember Finance</td><td>Enterprise</td><td class="num">£79,000</td><td class="num"><span class="band band--watch">6.9</span></td><td class="num">64 days</td><td>Executive call (renewal within 120 days)</td></tr>
+    <tr><td>Cobalt Charity</td><td>Mid-market</td><td class="num">£29,000</td><td class="num"><span class="band band--risk">4.7</span></td><td class="num">351 days</td><td>Check-in within 5 working days; recovery plan</td></tr>
+    <tr><td>Tidal Recruitment</td><td>Mid-market</td><td class="num">£21,000</td><td class="num"><span class="band band--watch">5.6</span></td><td class="num">68 days</td><td>Check-in within 2 weeks</td></tr>
+    <tr><td>Maple Retail</td><td>Mid-market</td><td class="num">£15,000</td><td class="num"><span class="band band--risk">3.3</span></td><td class="num">248 days</td><td>Check-in within 5 working days; recovery plan</td></tr>
   </tbody>
 </table>
 </div>
@@ -125,11 +135,33 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
   <a href="data/accounts.csv" download>Download the dataset (CSV)</a>
 </p>
 <p>Change the weights, thresholds or bands on the Inputs sheet and every score, band, priority and play updates.</p>
-
-<footer>
-<p>Fictional accounts and figures, for illustration only.</p>
-<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a> · <a href="../ai-agent-health-score/">The AI agent version</a> · <a href="../../cs-operations/health-score-pipeline/">The SQL pipeline</a></p>
-</footer>
+    </div>
+  </div>
+</article>
+<section class="cta" aria-labelledby="cta-title">
+  <div class="shell">
+    <div class="cta__text">
+      <h2 id="cta-title">Do you know which customers need you this week?</h2>
+      <p>I'd be glad to talk through how your team could prioritise by revenue at risk.</p>
+    </div>
+    <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
+  </div>
+</section>
+<nav class="shell related" aria-labelledby="related-title">
+  <h2 id="related-title" class="label">Related case studies</h2>
+  <ul><li><a class="textlink" href="../ai-agent-health-score/">The AI agent version: AI Agent Customer Health Score</a></li><li><a class="textlink" href="../../cs-operations/health-score-pipeline/">The same score in SQL, with weekly Slack alerts</a></li></ul>
+</nav>
 </main>
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p class="site-footer__note">Fictional accounts and figures, for illustration only.</p>
+    <ul>
+      <li><a href="../../#case-studies">All case studies</a></li>
+      <li><a href="https://github.com/blkren/blkren.github.io">Source files on GitHub</a></li>
+    </ul>
+    <p class="site-footer__copy">&copy; 2026 Chelsea Alagoa</p>
+  </div>
+</footer>
+<a class="to-top" href="#top" data-to-top><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg><span class="visually-hidden">Back to top</span></a>
 </body>
 </html>

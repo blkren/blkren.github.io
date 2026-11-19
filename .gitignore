@@ -12,3 +12,6 @@ __pycache__/
 *.pfx
 secrets.*
 credentials.json
+
+# Claude Code local settings
+.claude/

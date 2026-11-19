@@ -3,72 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Agent Customer Health Score</title>
+<title>A health score for an AI agent | Chelsea Alagoa</title>
 <meta name="description" content="A case study in retention: a customer health score for an AI agent product used by regulated service businesses, built on a fictional dataset.">
-<style>
-:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--red:#c0453a;--amber:#d9962b;--lgreen:#7fb069;--dgreen:#2f7a3e}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}}
-:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
-main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
-h1,h2,h3,.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
-h1{font-size:2rem;margin:.2em 0 .4em}
-h2{font-size:1.25rem;margin:2.2em 0 .5em}
-.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.lede{font-size:1.15rem;color:var(--muted)}
-.summary{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 18px;margin:20px 0}
-.summary dl{margin:0}
-.summary div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
-.summary div:last-child{border-bottom:0}
-.summary dt{font:600 .85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
-.summary dd{margin:0}
-@media (max-width:520px){.summary div{grid-template-columns:1fr;gap:2px}}
-.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
-table{width:100%;border-collapse:collapse;font:.92rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.wrap{overflow-x:auto}
-.chart-title{font:600 .9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:16px 0 10px}
-.bars{display:grid;gap:10px;font:.9rem/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-.bar-row{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
-.bar-track{display:flex;align-items:center;gap:8px;min-width:0}
-.bar{display:block;height:22px;border-radius:3px;max-width:calc(100% - 130px)}
-.bar-value{white-space:nowrap;font-variant-numeric:tabular-nums}
-.chip{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;color:#fff}
-.red{background:var(--red)}.amber{background:var(--amber);color:#1d2129}.lgreen{background:var(--lgreen);color:#1d2129}.dgreen{background:var(--dgreen)}
-figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
-ol li,ul li{margin:.35em 0}
-a{color:var(--accent)}
-.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
-/* Additions for this page: light band chips with dark text, and the dimension grid. */
-.chip.healthy{background:#d7efdf;color:#1d2129}.chip.watch{background:#fbe8c4;color:#1d2129}.chip.risk{background:#f7d4cc;color:#1d2129}
-.chip{white-space:nowrap}
-.dims{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0}
-.dim{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
-.dim h3{font-size:1rem;margin:0 0 .2em}
-.dim .q{margin:0 0 .5em;color:var(--muted);font-size:.9rem;font-style:italic}
-.dim ul{margin:0;padding-left:1.1em;font:.88rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-.dim li{margin:.25em 0}
-</style>
+<link rel="canonical" href="https://blkren.github.io/retention-and-churn/ai-agent-health-score/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Chelsea Alagoa">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://blkren.github.io/retention-and-churn/ai-agent-health-score/">
+<meta property="og:title" content="A health score for an AI agent | Chelsea Alagoa">
+<meta property="og:description" content="A case study in retention: a customer health score for an AI agent product used by regulated service businesses, built on a fictional dataset.">
+<meta property="og:image" content="https://blkren.github.io/assets/img/og-chain.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Chelsea Alagoa. A value chain line with a gold seam repairing the break.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../../assets/js/site.js?v=20261119f" defer></script>
 </head>
-<body>
-<main>
-<p class="eyebrow">Retention and churn · Health scoring</p>
-<h1>A health score for an AI agent</h1>
+<body id="top">
+<div class="progress" aria-hidden="true"><i data-progress></i></div>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../#case-studies">Case studies</a></li>
+        <li><a href="../../#how">How I work</a></li>
+        <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+  <div class="shell cs-top">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../#case-studies">Case studies</a></li><li>Retention and churn</li></ol></nav>
+    <h1>A health score for an AI agent</h1>
+    <p class="sowhat">41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it's new and busy.</p>
+  </div>
+  <div class="shell">
+    <section class="broke" aria-labelledby="broke-title">
+      <h2 id="broke-title">Where the chain broke</h2>
+      <ol class="stages" aria-label="Value chain stages, with the break marked"><li>Buy</li><li>Onboard</li><li class="is-break">Adopt<span class="visually-hidden"> (where it broke)</span></li><li>Realise value</li><li>Renew</li></ol>
+      <p>Adoption. The largest account looked busy, but the agent wasn't yet handling enough of the work the customer bought it for. A score built on usage couldn't see that.</p>
+    </section>
+  </div>
+  <div class="shell glance">
+    <section aria-labelledby="glance-title">
+      <h2 id="glance-title" class="visually-hidden">At a glance</h2>
+      <dl class="sum">
+        <div><dt>Challenge</dt><dd>Standard health scores count logins and usage. For an AI agent that handles calls, bookings and urgent requests for regulated service businesses, usage says little about whether the AI is getting it right, or whether the customer can see the value.</dd></div>
+        <div><dt>Approach</dt><dd>Designed a score of 24 metrics across six dimensions, weighted by lifecycle stage, with red-flag caps for safety and compliance incidents and a data confidence figure. I built it as a formula-driven Excel model and ran it on eight sample accounts.</dd></div>
+        <div><dt>Impact</dt><dd>41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it's new and busy.</dd></div>
+        <div><dt>Skills shown</dt><dd><ul><li>Health scoring for AI products</li><li>Lifecycle-weighted modelling</li><li>Red-flag caps and data confidence</li></ul></dd></div>
+        <div><dt>Tools</dt><dd><ul><li>Excel</li><li>Claude for research and drafting</li></ul></dd></div>
+      </dl>
+    </section>
+    <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">41%</p><p class="figure__t">of ARR at risk across eight accounts</p></li><li class="figure"><p class="figure__n">£180k</p><p class="figure__t">largest at-risk account, still in onboarding</p></li><li class="figure"><p class="figure__n">69</p><p class="figure__t">ARR-weighted score out of 100</p></li><li class="figure"><p class="figure__n">24</p><p class="figure__t">metrics across six dimensions</p></li></ul>
+  </div>
+  <div class="shell">
+    <div class="prose">
 <p class="lede">How I'd redesign a customer health score when the real question isn't "are they logging in?" but "is the AI doing the work well enough that the customer relies on it and can see the value?"</p>
-
-<div class="summary sans">
-<dl>
-  <div><dt>Skill shown</dt><dd>Retention and churn</dd></div>
-  <div><dt>The problem</dt><dd>Standard health scores count logins and usage. For an AI agent that handles calls, bookings and urgent requests for regulated service businesses, usage says little about whether the AI is getting it right, or whether the customer can see the value.</dd></div>
-  <div><dt>What I did</dt><dd>Designed a score of 24 metrics across six dimensions, weighted by lifecycle stage, with red-flag caps for safety and compliance incidents and a data confidence figure. I built it as a formula-driven Excel model and ran it on eight sample accounts.</dd></div>
-  <div><dt>Result</dt><dd>41% of ARR (£267,000) is at risk, and most of it is one enterprise account still in onboarding (£180,000) that a usage-only score would miss because it's new and busy.</dd></div>
-  <div><dt>Tools used</dt><dd>Excel; Claude for research and drafting</dd></div>
-</dl>
-</div>
-
 <p class="note">The organisations, accounts and figures here are fictional. The product is described generically: an AI agent that answers calls and messages, books appointments and triages urgent requests for regulated service businesses, such as dental practices, physiotherapy clinics, heating and plumbing firms and letting agents.</p>
 
 <h2>Why a standard health score fails for AI agents</h2>
@@ -156,7 +157,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
   <li><strong>A critical safety or compliance incident</strong> in the last 30 days is a red flag, and caps the score at 49 however good the rest looks.</li>
 </ul>
 <p>What counts as a critical error depends on the sector. These are the ones I'd agree with each customer before go-live:</p>
-<div class="wrap">
+<div class="wrap" tabindex="0" role="region" aria-label="Table: Sector, A critical error the AI must never make">
 <table>
   <thead><tr><th>Sector</th><th>A critical error the AI must never make</th></tr></thead>
   <tbody>
@@ -181,7 +182,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
   <li>If any red flag is set, the score is capped at 49.</li>
 </ol>
 <p>What matters changes as an account matures. In onboarding I weight adoption most, because an account that isn't embedded in the first 90 days is much harder to win back later. By renewal, value and the relationship matter most, because that's what the decision rests on.</p>
-<div class="wrap">
+<div class="wrap" tabindex="0" role="region" aria-label="Table: Dimension, Onboarding, Adoption, Mature, Renewal">
 <table>
   <thead><tr><th>Dimension</th><th class="num">Onboarding</th><th class="num">Adoption</th><th class="num">Mature</th><th class="num">Renewal</th></tr></thead>
   <tbody>
@@ -195,16 +196,16 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 </table>
 </div>
 <p><strong>Red flags.</strong> Any one of these caps the score at 49: the sponsor or champion has left; a critical safety or compliance incident in the last 30 days; an invoice 60 or more days overdue; a competitor evaluation or notice given. I use a cap because these events can end an account on their own, and an average would dilute them.</p>
-<p><strong>Bands.</strong> <span class="chip healthy">Healthy</span> 75 and above, <span class="chip watch">Watch</span> 50 to 74, <span class="chip risk">At risk</span> below 50. A drop of 10 or more points triggers an alert, whatever the band.</p>
+<p><strong>Bands.</strong> <span class="band band--healthy">Healthy</span> 75 and above, <span class="band band--watch">Watch</span> 50 to 74, <span class="band band--risk">At risk</span> below 50. A drop of 10 or more points triggers an alert, whatever the band.</p>
 <p><strong>Confidence.</strong> If a metric has no data, it's left out and the data confidence figure goes down. Below 70%, the score is labelled low confidence. I'd rather show an honest gap than a precise-looking number built on zeros.</p>
 
 <h2>What the model shows</h2>
 <p>Results as at 29 October 2026, across eight sample accounts.</p>
 <p class="chart-title">ARR by health band (£645,000 across 8 accounts)</p>
 <div class="bars" role="img" aria-label="ARR by health band. Healthy: £264,000 across 2 accounts. Watch: £114,000 across 2 accounts. At risk: £267,000 across 4 accounts.">
-  <div class="bar-row"><span>Healthy</span><span class="bar-track"><span class="bar" style="width:98.9%;background:var(--dgreen)"></span><span class="bar-value">£264,000 · 2 accounts</span></span></div>
-  <div class="bar-row"><span>Watch</span><span class="bar-track"><span class="bar" style="width:42.7%;background:var(--amber)"></span><span class="bar-value">£114,000 · 2 accounts</span></span></div>
-  <div class="bar-row"><span>At risk</span><span class="bar-track"><span class="bar" style="width:100%;background:var(--red)"></span><span class="bar-value">£267,000 · 4 accounts</span></span></div>
+  <div class="bar-row"><span>Healthy</span><span class="bar-track"><span class="bar" style="width:98.9%;background:var(--healthy)"></span><span class="bar-value">£264,000 · 2 accounts</span></span></div>
+  <div class="bar-row"><span>Watch</span><span class="bar-track"><span class="bar" style="width:42.7%;background:var(--watch)"></span><span class="bar-value">£114,000 · 2 accounts</span></span></div>
+  <div class="bar-row"><span>At risk</span><span class="bar-track"><span class="bar" style="width:100%;background:var(--risk)"></span><span class="bar-value">£267,000 · 4 accounts</span></span></div>
 </div>
 
 <ul>
@@ -212,18 +213,18 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
   <li><strong>41% of ARR is at risk.</strong> Most of it is one account: Brightwater Clinics, £180,000, still in onboarding.</li>
 </ul>
 
-<div class="wrap">
+<div class="wrap" tabindex="0" role="region" aria-label="Table: Account, Sector, Segment, Stage, ARR, Score, Band, Change, Alert, Weakest dimension">
 <table>
   <thead><tr><th>Account</th><th>Sector</th><th>Segment</th><th>Stage</th><th class="num">ARR</th><th class="num">Score</th><th>Band</th><th class="num">Change</th><th>Alert</th><th>Weakest dimension</th></tr></thead>
   <tbody>
-    <tr><td>Larch Dental Group</td><td>Dental</td><td>Enterprise</td><td>Mature</td><td class="num">£240,000</td><td class="num">100</td><td><span class="chip healthy">Healthy</span></td><td class="num">+23</td><td>None</td><td>Value realised</td></tr>
-    <tr><td>Northgate Dental</td><td>Dental</td><td>SMB</td><td>Adoption</td><td class="num">£24,000</td><td class="num">91</td><td><span class="chip healthy">Healthy</span></td><td class="num">+23</td><td>None</td><td>Value realised</td></tr>
-    <tr><td>Cobalt Heating &amp; Plumbing</td><td>Heating and plumbing</td><td>Mid-market</td><td>Mature</td><td class="num">£96,000</td><td class="num">54</td><td><span class="chip watch">Watch</span></td><td class="num">-27</td><td>Sharp drop</td><td>Relationship and sentiment</td></tr>
-    <tr><td>Harbour Physio</td><td>Physiotherapy</td><td>SMB</td><td>Onboarding</td><td class="num">£18,000</td><td class="num">53</td><td><span class="chip watch">Watch</span></td><td class="num">New</td><td>None</td><td>Adoption and embedding</td></tr>
-    <tr><td>Fenwick Gas Services</td><td>Heating and plumbing</td><td>Mid-market</td><td>Adoption</td><td class="num">£60,000</td><td class="num">49</td><td><span class="chip risk">At risk</span></td><td class="num">-21</td><td>Red flag (critical safety incident; would be 73)</td><td>AI quality and trust</td></tr>
-    <tr><td>Oakridge Lettings</td><td>Lettings</td><td>SMB</td><td>Renewal</td><td class="num">£12,000</td><td class="num">49</td><td><span class="chip risk">At risk</span></td><td class="num">-6</td><td>Red flag (competitor evaluation; would be 63)</td><td>Value realised</td></tr>
-    <tr><td>Brightwater Clinics</td><td>Physiotherapy and dental</td><td>Enterprise</td><td>Onboarding</td><td class="num">£180,000</td><td class="num">45</td><td><span class="chip risk">At risk</span></td><td class="num">New</td><td>None (data confidence 79%)</td><td>Adoption and embedding</td></tr>
-    <tr><td>Meridian Physiotherapy</td><td>Physiotherapy</td><td>SMB</td><td>Renewal</td><td class="num">£15,000</td><td class="num">26</td><td><span class="chip risk">At risk</span></td><td class="num">-36</td><td>Red flag (champion left)</td><td>Relationship and sentiment</td></tr>
+    <tr><td>Larch Dental Group</td><td>Dental</td><td>Enterprise</td><td>Mature</td><td class="num">£240,000</td><td class="num">100</td><td><span class="band band--healthy">Healthy</span></td><td class="num">+23</td><td>None</td><td>Value realised</td></tr>
+    <tr><td>Northgate Dental</td><td>Dental</td><td>SMB</td><td>Adoption</td><td class="num">£24,000</td><td class="num">91</td><td><span class="band band--healthy">Healthy</span></td><td class="num">+23</td><td>None</td><td>Value realised</td></tr>
+    <tr><td>Cobalt Heating &amp; Plumbing</td><td>Heating and plumbing</td><td>Mid-market</td><td>Mature</td><td class="num">£96,000</td><td class="num">54</td><td><span class="band band--watch">Watch</span></td><td class="num">-27</td><td>Sharp drop</td><td>Relationship and sentiment</td></tr>
+    <tr><td>Harbour Physio</td><td>Physiotherapy</td><td>SMB</td><td>Onboarding</td><td class="num">£18,000</td><td class="num">53</td><td><span class="band band--watch">Watch</span></td><td class="num">New</td><td>None</td><td>Adoption and embedding</td></tr>
+    <tr><td>Fenwick Gas Services</td><td>Heating and plumbing</td><td>Mid-market</td><td>Adoption</td><td class="num">£60,000</td><td class="num">49</td><td><span class="band band--risk">At risk</span></td><td class="num">-21</td><td>Red flag (critical safety incident; would be 73)</td><td>AI quality and trust</td></tr>
+    <tr><td>Oakridge Lettings</td><td>Lettings</td><td>SMB</td><td>Renewal</td><td class="num">£12,000</td><td class="num">49</td><td><span class="band band--risk">At risk</span></td><td class="num">-6</td><td>Red flag (competitor evaluation; would be 63)</td><td>Value realised</td></tr>
+    <tr><td>Brightwater Clinics</td><td>Physiotherapy and dental</td><td>Enterprise</td><td>Onboarding</td><td class="num">£180,000</td><td class="num">45</td><td><span class="band band--risk">At risk</span></td><td class="num">New</td><td>None (data confidence 79%)</td><td>Adoption and embedding</td></tr>
+    <tr><td>Meridian Physiotherapy</td><td>Physiotherapy</td><td>SMB</td><td>Renewal</td><td class="num">£15,000</td><td class="num">26</td><td><span class="band band--risk">At risk</span></td><td class="num">-36</td><td>Red flag (champion left)</td><td>Relationship and sentiment</td></tr>
   </tbody>
 </table>
 </div>
@@ -239,7 +240,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 
 <h2>Alerts and plays</h2>
 <p>Each account gets one alert, in priority order: red flag, then sharp drop, then low confidence, then renewal at risk. The recommended play comes from the weakest dimension.</p>
-<div class="wrap">
+<div class="wrap" tabindex="0" role="region" aria-label="Table: Weakest dimension, Play">
 <table>
   <thead><tr><th>Weakest dimension</th><th>Play</th></tr></thead>
   <tbody>
@@ -255,7 +256,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 
 <h2>Events to instrument before go-live</h2>
 <p>A score is only as good as its data. These are the product events I'd ask for before the first customer goes live, so the score isn't built on guesses.</p>
-<div class="wrap">
+<div class="wrap" tabindex="0" role="region" aria-label="Table: Event, What it feeds">
 <table>
   <thead><tr><th>Event</th><th>What it feeds</th></tr></thead>
   <tbody>
@@ -287,11 +288,33 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
   <a href="data/accounts.csv" download>Download the dataset (CSV)</a>
 </p>
 <p>The workbook has five sheets: Dashboard, Metrics, Stage Weights, Account Inputs and Scoring. Change the inputs, thresholds or stage weights and every score updates.</p>
-
-<footer>
-<p>Fictional organisations and figures, for illustration only. Sector examples describe the kind of errors to guard against and are not legal or regulatory advice.</p>
-<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a> · <a href="../health-score-model/">The SaaS version</a> · <a href="../../ai-workflows/account-brief-generator/">Pre-call briefs from this data</a></p>
-</footer>
+    </div>
+  </div>
+</article>
+<section class="cta" aria-labelledby="cta-title">
+  <div class="shell">
+    <div class="cta__text">
+      <h2 id="cta-title">Is a busy account hiding a value problem in your book?</h2>
+      <p>I'd be glad to talk through how a score like this could work for your team.</p>
+    </div>
+    <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
+  </div>
+</section>
+<nav class="shell related" aria-labelledby="related-title">
+  <h2 id="related-title" class="label">Related case studies</h2>
+  <ul><li><a class="textlink" href="../health-score-model/">The SaaS version: Customer Health Score Model</a></li><li><a class="textlink" href="../../ai-workflows/account-brief-generator/">Pre-call briefs built from this data</a></li><li><a class="textlink" href="../../cs-operations/golive-copilot/">AI Agent Go-live Kit, with the same Brightwater account</a></li></ul>
+</nav>
 </main>
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p class="site-footer__note">Fictional organisations and figures, for illustration only. Sector examples describe the kind of errors to guard against and are not legal or regulatory advice.</p>
+    <ul>
+      <li><a href="../../#case-studies">All case studies</a></li>
+      <li><a href="https://github.com/blkren/blkren.github.io">Source files on GitHub</a></li>
+    </ul>
+    <p class="site-footer__copy">&copy; 2026 Chelsea Alagoa</p>
+  </div>
+</footer>
+<a class="to-top" href="#top" data-to-top><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg><span class="visually-hidden">Back to top</span></a>
 </body>
 </html>

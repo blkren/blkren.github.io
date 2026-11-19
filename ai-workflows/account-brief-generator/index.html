@@ -3,62 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pre-call Account Briefs with Claude</title>
+<title>A pre-call brief that can't make up numbers | Chelsea Alagoa</title>
 <meta name="description" content="A case study in AI workflows: a pre-call account brief drafted by Claude from health score data, with a check that blocks any number not in the data. Fictional accounts.">
-<style>
-:root{--bg:#fbfaf7;--surface:#ffffff;--text:#1d2129;--muted:#5b6270;--line:#e3e1db;--accent:#1f5f8b;--accent-soft:#e6eef5;--red:#c0453a;--amber:#d9962b;--lgreen:#7fb069;--dgreen:#2f7a3e}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}}
-:root[data-theme="dark"]{--bg:#15171b;--surface:#1d2026;--text:#e9e7e2;--muted:#a3a9b3;--line:#30343c;--accent:#7fb3d9;--accent-soft:#22303d;--red:#e0705f;--amber:#e8b04f;--lgreen:#9cc98a;--dgreen:#5fb06f}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 Georgia,"Times New Roman",serif}
-main{max-width:760px;margin:0 auto;padding:48px 16px 72px}
-h1,h2,h3,.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.25}
-h1{font-size:2rem;margin:.2em 0 .4em}
-h2{font-size:1.25rem;margin:2.2em 0 .5em}
-h3{font-size:1.05rem;margin:1.6em 0 .4em}
-.eyebrow{font:600 .8rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.lede{font-size:1.15rem;color:var(--muted)}
-.summary{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 18px;margin:20px 0}
-.summary dl{margin:0}
-.summary div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
-.summary div:last-child{border-bottom:0}
-.summary dt{font:600 .85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
-.summary dd{margin:0}
-@media (max-width:520px){.summary div{grid-template-columns:1fr;gap:2px}}
-.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;border-radius:4px;font-size:.95rem}
-table{width:100%;border-collapse:collapse;font:.92rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;margin:12px 0}
-th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
-.wrap{overflow-x:auto}
-ol li,ul li{margin:.35em 0}
-a{color:var(--accent)}
-code{font-size:.88em}
-pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;font:.82rem/1.5 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
-.downloads a{display:inline-block;margin:6px 12px 6px 0;padding:8px 14px;border:1px solid var(--accent);border-radius:6px;text-decoration:none;font:600 .95rem -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
-/* Additions for this page: the example brief. */
-.brief{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;font-size:.95rem}
-.brief h3{margin-top:1.2em}
-.brief h3:first-child{margin-top:0}
-.brief .meta{font:.85rem/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted);margin:0 0 .8em}
-.brief .ev{font:.8rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--muted)}
-</style>
+<link rel="canonical" href="https://blkren.github.io/ai-workflows/account-brief-generator/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Chelsea Alagoa">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://blkren.github.io/ai-workflows/account-brief-generator/">
+<meta property="og:title" content="A pre-call brief that can't make up numbers | Chelsea Alagoa">
+<meta property="og:description" content="A case study in AI workflows: a pre-call account brief drafted by Claude from health score data, with a check that blocks any number not in the data. Fictional accounts.">
+<meta property="og:image" content="https://blkren.github.io/assets/img/og-chain.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Chelsea Alagoa. A value chain line with a gold seam repairing the break.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../assets/fonts/source-serif-4-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css?v=20261119f">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../../assets/js/site.js?v=20261119f" defer></script>
 </head>
-<body>
-<main>
-<p class="eyebrow">AI workflows · Claude API</p>
-<h1>A pre-call brief that can't make up numbers</h1>
+<body id="top">
+<div class="progress" aria-hidden="true"><i data-progress></i></div>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 30 14" aria-hidden="true" focusable="false"><path d="M0 7h9" stroke="currentColor" stroke-width="3"/><path d="M9 7l3-5 4 9 3-6h2" fill="none" stroke="var(--seam)" stroke-width="3" stroke-linejoin="round"/><path d="M21 7h9" stroke="currentColor" stroke-width="3"/></svg>Chelsea Alagoa</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../#case-studies">Case studies</a></li>
+        <li><a href="../../#how">How I work</a></li>
+        <li><a href="../../thinking-out-loud/">Thinking Out Loud</a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>Dark mode</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+  <div class="shell cs-top">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../#case-studies">Case studies</a></li><li>AI workflows</li></ol></nav>
+    <h1>A pre-call brief that can't make up numbers</h1>
+    <p class="sowhat">A brief for any of the eight accounts in one command, in the same five sections every time, with each risk traceable to its data.</p>
+  </div>
+  <div class="shell">
+    <section class="broke" aria-labelledby="broke-title">
+      <h2 id="broke-title">Where the chain broke</h2>
+      <ol class="stages" aria-label="Value chain stages, with the break marked"><li>Buy</li><li>Onboard</li><li>Adopt</li><li class="is-break">Realise value<span class="visually-hidden"> (where it broke)</span></li><li>Renew</li></ol>
+      <p>Realising value. The customer call is where value gets shown, but preparing for it took twenty minutes of digging, and an AI summary with one invented figure would undermine it.</p>
+    </section>
+  </div>
+  <div class="shell glance">
+    <section aria-labelledby="glance-title">
+      <h2 id="glance-title" class="visually-hidden">At a glance</h2>
+      <dl class="sum">
+        <div><dt>Challenge</dt><dd>Call prep means pulling together scores, red flags, metrics and the last play by hand. A language model can write that summary in seconds, but in a regulated customer base a brief with one invented figure is worse than no brief.</dd></div>
+        <div><dt>Approach</dt><dd>Built a script that sends one account's health score data to Claude, gets the brief back in a fixed structure, and checks it in code: every number must be in the data and every risk must cite the fields behind it. Data gaps are worked out by the code, not the model. If the check fails, nothing is saved.</dd></div>
+        <div><dt>Impact</dt><dd>A brief for any of the eight accounts from the <a href="../../retention-and-churn/ai-agent-health-score/">AI agent health score</a> in one command, in the same five sections every time, with each risk traceable to its data.</dd></div>
+        <div><dt>Skills shown</dt><dd><ul><li>Claude API workflows with guardrails</li><li>Structured outputs</li><li>Validation in code</li></ul></dd></div>
+        <div><dt>Tools</dt><dd><ul><li>Claude API (structured outputs, refusal fallback)</li><li>Python (written with Claude)</li><li>CSV data from the AI agent health score</li></ul></dd></div>
+      </dl>
+    </section>
+    <ul class="figures" aria-label="Key figures"><li class="figure"><p class="figure__n">8</p><p class="figure__t">accounts, each briefed in one command</p></li><li class="figure"><p class="figure__n">5</p><p class="figure__t">sections, in the same order every time</p></li><li class="figure"><p class="figure__n">22 of 22</p><p class="figure__t">numbers in the example brief traced back to the data</p></li></ul>
+  </div>
+  <div class="shell">
+    <div class="prose">
 <p class="lede">Before a customer call, a CSM needs two minutes of context, not twenty minutes in the CS platform. I built a workflow that has Claude write the brief from the health score data, then checks it so that a confident-sounding wrong number never reaches the call.</p>
-
-<div class="summary sans">
-<dl>
-  <div><dt>Skill shown</dt><dd>Using AI to speed up Customer Success work, with guardrails</dd></div>
-  <div><dt>The problem</dt><dd>Call prep means pulling together scores, red flags, metrics and the last play by hand. A language model can write that summary in seconds, but in a regulated customer base a brief with one invented figure is worse than no brief.</dd></div>
-  <div><dt>What I did</dt><dd>Built a script that sends one account's health score data to Claude, gets the brief back in a fixed structure, and checks it in code: every number must be in the data and every risk must cite the fields behind it. Data gaps are worked out by the code, not the model. If the check fails, nothing is saved.</dd></div>
-  <div><dt>Result</dt><dd>A brief for any of the eight accounts from the <a href="../../retention-and-churn/ai-agent-health-score/">AI agent health score</a> in one command, in the same five sections every time, with each risk traceable to its data.</dd></div>
-  <div><dt>Tools used</dt><dd>Claude API (structured outputs, refusal fallback), Python (written with Claude), CSV data from the AI agent health score</dd></div>
-</dl>
-</div>
-
 <p class="note">The accounts and figures are fictional, from the AI agent health score case study. The example brief below was written by hand, from Fenwick's data, to show the output format. A real run words it differently.</p>
 
 <h2>Why not just paste the account into a chatbot?</h2>
@@ -74,7 +85,7 @@ footer{margin-top:48px;font-size:.85rem;color:var(--muted)}
 </ol>
 
 <h2>The rules I gave the model</h2>
-<pre>Use only the facts given. Every number you write must appear in the facts.
+<pre tabindex="0">Use only the facts given. Every number you write must appear in the facts.
 For each risk, put the exact names of the facts that support it in `evidence`.
 If a red flag is set, lead with it.
 Don't give clinical, legal or regulatory advice. Where one of those questions
@@ -83,7 +94,7 @@ Plain UK English, short sentences, no filler.</pre>
 <p>The prompt asks for good behaviour, but the check enforces it. I don't rely on a prompt alone for anything a customer could be harmed by.</p>
 
 <h2>The check, in code</h2>
-<pre>for n in sorted(numbers_in(prose)):
+<pre tabindex="0">for n in sorted(numbers_in(prose)):
     if not any(abs(n - a) &lt; 1e-6 for a in allowed):
         problems.append(f"The number {n:g} isn't in the account data.")
 for risk in brief["risks"]:
@@ -141,11 +152,33 @@ for risk in brief["risks"]:
   <a href="data/scores.csv" download>Download the scores (CSV)</a>
 </p>
 <p>To run it: <code>pip install -r requirements.txt</code>, then <code>python brief.py "Fenwick Gas Services" --dry-run</code> to see the facts and prompt. Drop <code>--dry-run</code> to call the API, which needs an Anthropic API key.</p>
-
-<footer>
-<p>Fictional organisations and figures, for illustration only. The example brief was written by hand to show the format.</p>
-<p>Built by Chelsea Alagoa · <a href="https://linkedin.com/in/chelseaalagoa">LinkedIn</a> · <a href="../../">Back to portfolio</a> · <a href="../../retention-and-churn/ai-agent-health-score/">The AI agent health score</a></p>
-</footer>
+    </div>
+  </div>
+</article>
+<section class="cta" aria-labelledby="cta-title">
+  <div class="shell">
+    <div class="cta__text">
+      <h2 id="cta-title">Could your team prepare for calls faster without losing accuracy?</h2>
+      <p>I'd be glad to talk through how an AI workflow with guardrails could fit your CS team.</p>
+    </div>
+    <a class="button" href="https://www.linkedin.com/in/chelseaalagoa/"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 4h16v12H8l-4 4z"/></svg>Message me on LinkedIn<span class="visually-hidden"> (opens LinkedIn)</span></a>
+  </div>
+</section>
+<nav class="shell related" aria-labelledby="related-title">
+  <h2 id="related-title" class="label">Related case studies</h2>
+  <ul><li><a class="textlink" href="../../retention-and-churn/ai-agent-health-score/">The AI agent health score behind these briefs</a></li><li><a class="textlink" href="../../cs-operations/golive-copilot/">AI Agent Go-live Kit</a></li></ul>
+</nav>
 </main>
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p class="site-footer__note">Fictional organisations and figures, for illustration only. The example brief was written by hand to show the format.</p>
+    <ul>
+      <li><a href="../../#case-studies">All case studies</a></li>
+      <li><a href="https://github.com/blkren/blkren.github.io">Source files on GitHub</a></li>
+    </ul>
+    <p class="site-footer__copy">&copy; 2026 Chelsea Alagoa</p>
+  </div>
+</footer>
+<a class="to-top" href="#top" data-to-top><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/></svg><span class="visually-hidden">Back to top</span></a>
 </body>
 </html>
